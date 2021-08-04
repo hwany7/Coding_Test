@@ -1,0 +1,56 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+
+    /*
+     * char[] s <- str.toCharArray()
+     * lt <- 0, rt <- str.length() - 1
+     *  while(lt < rt)
+     *          if lt.isNotAlphabet : lt++
+     *          else if not rt.isNotAlphabet : rt--;
+     *          else:
+     *              swap(s[lt], s[rt]
+     *              lt++, rt--
+     * answer <- toString(s)
+     */
+
+	public String solution(String str) {
+		
+		String answer = "";
+		
+		//방법1_일일이 찾아 비교하기
+		char[] s = str.toCharArray();
+		int lt = 0;
+		int rt = str.length() - 1;
+		
+		while(lt < rt) {
+			if(!Character.isAlphabetic(s[lt])) lt++;
+			else if(!Character.isAlphabetic(s[rt])) rt--;
+			else {
+				char temp = s[lt];
+				s[lt] = s[rt];
+				s[rt] = temp;
+				lt++;
+				rt--;
+			}
+		}
+		answer = String.valueOf(s);
+		
+		return answer;
+	}
+
+	public static void main(String[] args) {
+
+        //Input: a#b!GE*T@S
+        //Output: S#T!EG*b@a
+
+		Main T = new Main();
+		Scanner kb = new Scanner(System.in);
+		String str = kb.nextLine();
+
+		System.out.println(T.solution(str));
+	}
+
+}
