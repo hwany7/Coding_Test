@@ -25,6 +25,20 @@ ___
 
 
 
+### Integer.parseInt(String, 진수) : return int
+* String 을 입력받아 해당 진수로 바꿔 int형으로 반환 한다
+
+
+
+
+
+
+
+
+
+
+
+
 ### String.valueOf(char[]) : return String
 * char[]을 입력받아 String 으로 반환
 
@@ -53,6 +67,9 @@ ___
 
 ### str.substring(start, end) : return String
 * str 의 index start(<=)  end(>) 의 사이를 잘라서 String 으로 반환
+
+### srt.substring(num) : return String
+* num 의 수만큼 앞에서 잘라내고 String 으로 반환
 
 ### str.equalsIgnoreCase(String) : return boolean
 * String 을 입력받아 str 과 같은지 대소문자는 무시하며 비교 
