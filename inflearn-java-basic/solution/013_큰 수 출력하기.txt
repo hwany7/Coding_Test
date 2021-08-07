@@ -1,0 +1,51 @@
+package basic.inflearn;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    /*
+     * answer.add(arr[0])
+     * for i=1 ~ n :
+     *      if arr[i] > arr[i-1] :
+     *              answer.add(arr[i])
+     */
+
+    public ArrayList<Integer> solution(int n, int[] arr) {
+
+        ArrayList<Integer> answer = new ArrayList<>();
+
+        answer.add(arr[0]);
+
+        for(int i=1; i<n; i++){
+            if(arr[i]>arr[i-1]){
+                answer.add(arr[i]);
+            }
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input: 6
+        //       7 3 9 5 6 12
+        //Output: 7 9 6 12
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+
+        for(int i=0; i<n; i++){
+            arr[i] = kb.nextInt();
+        }
+        for(int x : T.solution(n,arr)){
+            System.out.print(x + " ");
+        }
+
+    }
+
+}

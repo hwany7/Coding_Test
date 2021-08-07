@@ -37,8 +37,6 @@ ___
 
 
 
-
-
 ### String.valueOf(char[]) : return String
 * char[]을 입력받아 String 으로 반환
 
@@ -99,3 +97,5 @@ ___
 # java.util
 ___
 
+### ArrayList.add(Element) : return boolean
+* 해당 자료형의 값을 배열리스트에 더하고 그 결과를 반환
