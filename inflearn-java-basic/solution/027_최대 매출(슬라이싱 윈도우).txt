@@ -1,0 +1,59 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+
+    /*
+     * sum <- 0
+     * for i ~ k:
+     *      sum += arr[i]
+     * asnwer <- sum
+     * for i=k ~ n:
+     *      sum += (arr[i] - arr[i-k])
+     *      answer <- max(sum, answer)
+     */
+
+    public int solution(int n, int k, int[] arr) {
+
+        int answer = 0;
+        int sum = 0;
+
+        for(int i=0; i<k; i++){
+            sum += arr[i];
+        }
+        answer = sum;
+
+        for(int i=k; i<n; i++){
+            sum += (arr[i] - arr[i-k]);
+            answer = Math.max(answer, sum);
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    10 3
+        //          12 15 11 20 25 10 20 19 13 15
+        //Output:   56
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+
+        int[] arr = new int[n];
+        for(int i=0; i<n; i++){
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.solution(n, k, arr));
+
+
+
+    }
+
+
+}

@@ -5,40 +5,28 @@ import java.util.Scanner;
 public class Main {
 
     /*
-     * dx <- [-1, 0, 1, 0]
-     * dy <- [0, 1, 0, -1]
-     * for i ~ n:
-     *      for j ~ n:
-     *          flag <- ture
-     *          for k ~ 4:
-     *              nx <- i + dx[k]
-     *              ny <- j + dy[k]
-     *              if (nx >= 0 and nx < n) and (ny >= 0 and ny < n) and arr[nx][ny] >= arr[i][j] :
-     *                  flag <- false
-     *                  break
-     *          if flag == true:
-     *                  answer++
+     * cnt <- 0
+     * lt <- 0
+     * for rt ~ n:
+     *      if arr[rt] == 0:    cnt++
+     *      while cnt > k:
+     *          if arr[lt] == 0: cnt--
+     *          lt+=
+     *      answer = max(answer, rt-lt+1)
      */
 
-    public int solution(int n, int[][] arr) {
+    public int solution(int n, int k, int[] arr) {
 
         int answer = 0;
-        int[] dx = {-1, 0, 1, 0};
-        int[] dy = {0, 1, 0, -1};
+        int cnt = 0, lt = 0;
 
-        for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++){
-                boolean flag = true;
-                for(int k=0; k<4; k++){
-                    int nx = i + dx[k];
-                    int ny = j + dy[k];
-                    if(nx>=0 && nx<n && ny>=0 && ny<n && arr[nx][ny] >= arr[i][j]) {
-                        flag = false;
-                        break;
-                    }
-                }
-                if(flag) answer++;
+        for(int rt=0; rt<n; rt++){
+            if(arr[rt] == 0) cnt++;
+            while (cnt > k){
+                if(arr[lt] == 0) cnt--;
+                lt++;
             }
+            answer = Math.max(answer,  rt - lt + 1);
         }
 
         return answer;
@@ -46,30 +34,22 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //Input:    5
-        //          5 3 7 2 3
-        //          3 7 1 6 1
-        //          7 2 5 3 4
-        //          4 3 6 4 1
-        //          8 7 3 5 2
-        //Output:   10
+        //Input:    14 2
+        //          1 1 0 0 1 1 0 1 1 0 1 1 0 1
+        //Output:   8
 
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
-        int n = kb.nextInt();
 
-        int[][] arr = new int[n][n];
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+        int[] arr = new int[n];
 
         for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++) {
-                arr[i][j] = kb.nextInt();
-            }
+            arr[i] = kb.nextInt();
         }
 
-        System.out.print(T.solution(n, arr));
-
-
+        System.out.print(T.solution(n, k ,arr));
     }
-
 
 }

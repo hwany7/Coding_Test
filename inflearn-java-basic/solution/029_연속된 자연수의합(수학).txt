@@ -1,0 +1,43 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+
+    /*
+     * cnt <- 1
+     * n <- n-1
+     * while n > 0:
+     *      cnt++
+     *      n <- n - cnt
+     *      if n%cnt == 0: answer++
+     */
+
+    public int solution(int n) {
+
+        int answer = 0;
+        int cnt = 1;
+
+        n = n-1;
+        while (n>0){
+            cnt++;
+            n = n - cnt;
+            if(n%cnt == 0) answer++;
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    15
+        //Output:   3
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+
+        System.out.print(T.solution(n));
+    }
+}
