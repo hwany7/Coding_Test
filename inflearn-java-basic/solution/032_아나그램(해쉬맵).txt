@@ -1,0 +1,57 @@
+package basic.inflearn;
+
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+
+    /*
+     * new HashMap<Character, Integer>
+     * for key in a.toArray():
+     *      map.put(key, map.get(key, 0)
+     * for key in b.toArray():
+     *      value <- map.get(key, 0)
+     *      if value == 0:
+     *          return "NO"
+     *      else:
+     *          map.put(key, value - 1)
+     *
+     */
+
+    public String solution(String a, String b) {
+
+        String answer = "YES";
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        //카운팅
+        for(char key : a.toCharArray()){
+            map.put(key, map.getOrDefault(key, 0) + 1);
+        }
+
+        //체크
+        for(char key : b.toCharArray()){
+            int value = map.getOrDefault(key, 0);
+
+            if(value == 0) return "NO";
+            else map.put(key, map.get(key) - 1);
+        }
+
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    AbaAeCe
+        //          baeeACA
+        //Output:   YES
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String a = kb.next();
+        String b = kb.next();
+        System.out.println(T.solution(a, b));
+    }
+
+}

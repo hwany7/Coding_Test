@@ -26,7 +26,7 @@ ___
 
 
 ### Integer.parseInt(String, 진수) : return int
-* String 을 입력받아 해당 진수로 바꿔 int형으로 반환 한다
+* String 을 입력받아 해당 진수로 바꿔 int 형으로 반환 한다
 
 
 
@@ -99,3 +99,46 @@ ___
 
 ### ArrayList.add(Element) : return boolean
 * 해당 자료형의 값을 배열리스트에 더하고 그 결과를 반환
+
+
+### map.put(key, value)
+* 맵에 (key, value)를 추가
+
+### map.get(key) : return value
+* key 에 대한 value 를 얻음
+
+### map.getOrDefault(key, default) : return value and default
+* key 에 대한 값을 찾고, 값이 없으면 default 를 반환
+
+### map.keySet() : return Set<제너릭>
+* key 의 셋을 Set 제너릭으로 반환
+
+### map.containsKey(key) : return boolean
+* 맵에 해당 key 가 있는지 반환
+
+### map.size() : return int
+* key 의 개수를 반환
+
+### map.remove(key)
+* 특정 key 를 삭제
+
+### map.equals(map2) : return boolean
+* map 과 map 을 key, value 가 같은지 비교해서 결과 리턴(NO SAME)
+
+### new TreeSet<>(Collections.reverseOrder())
+* 트리셋을 만들고, 기본으로 내림차순 정렬하여 만든다
+
+### treeSet.add(value)
+* value 를 추가한다 (중복제거)
+
+### treeSet.remove(value)
+* value 를 제거
+
+### treeSet.size() : return int
+* 사이즈를 반환
+
+### treeSet.first() : return first value
+* 가장 앞의 값을 반환
+
+### treeSet.last() : return last value
+* 가장 나중의 값을 반환

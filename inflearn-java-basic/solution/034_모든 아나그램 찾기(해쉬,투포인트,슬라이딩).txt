@@ -1,0 +1,74 @@
+package basic.inflearn;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+
+    /*
+     * new HashMap<Character, Integer> map_a
+     * new HashMap<Character, Integer> map_b
+     *
+     * for key in b.toArray()
+     *      map_b.put(key, map_b.get(key, 0) + 1)
+     * char[] arr <- a.toArray()
+     *
+     * for i ~ b.length()-1:
+     *      map_a.put(arr[i], map_a.get(arr[i], 0) + 1)
+     *
+     * int lt <-0
+     * for rt=b.length()-1 ~ a.length():
+     *      map_a.put(arr[rt], map_a.get(arr[rt], 0) + 1)
+     *      if map_a == map_b:
+     *          answer++
+     *      map_a.put(arr[lt], map_a.get(arr[lt]) -1)
+     *      if map_a.get(arr[lt] == 0):
+     *          map_a.remove(arr[lt])
+     *      lt++
+     */
+
+    public int solution(String a, String b) {
+
+        int answer = 0;
+        HashMap<Character, Integer> mapA = new HashMap<>();
+        HashMap<Character, Integer> mapB = new HashMap<>();
+
+        for(char key : b.toCharArray()){
+            mapB.put(key, mapB.getOrDefault(key, 0) + 1);
+        }
+
+        char[] arr = a.toCharArray();
+        for(int i=0; i<b.length()-1; i++){
+            mapA.put(arr[i], mapA.getOrDefault(arr[i], 0) + 1);
+        }
+
+        int lt = 0;
+        for(int rt=b.length()-1; rt<a.length(); rt++){
+            mapA.put(arr[rt], mapA.getOrDefault(arr[rt], 0) + 1);
+
+            if(mapA.equals(mapB)) answer++;
+
+            mapA.put(arr[lt], mapA.get(arr[lt]) - 1);
+            if(mapA.get(arr[lt]) == 0) mapA.remove(arr[lt]);
+            lt++;
+        }
+
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    bacaAacba
+        //          abc
+        //Output:   3
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String a = kb.next();
+        String b = kb.next();
+
+        System.out.print(T.solution(a, b));
+    }
+
+}

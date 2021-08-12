@@ -31,20 +31,19 @@ public class Main {
 		
 		
 		//방법2_indexOf와 substring으로 split처럼 쓰기
-		int pos;
-		while((pos = str.indexOf(" ")) != -1) {
-			String tmp = str.substring(0, pos);
-			int len = tmp.length();
-			
-			if(len > m) {
-				m = len;
-				answer = tmp;
-			}
-		
-			str = str.substring(pos + 1);
-		}
-		
-		if(str.length() > m) answer = str;
+        str += " ";
+        int pos;
+        while ((pos = str.indexOf(" ")) != -1){
+            String s = str.substring(0, pos);
+            int len = s.length();
+
+            if(len > max){
+                max = len;
+                answer = s;
+            }
+
+            str = str.substring(pos+1);
+
 		
 		return answer;
 	}
