@@ -23,14 +23,10 @@ public class Main {
         char answer = ' ';
         HashMap<Character, Integer> map = new HashMap<>();
 
-        //Counter
+        //카운트 + 체크
+        int max = Integer.MIN_VALUE;
         for(char key : s.toCharArray()){
             map.put(key, map.getOrDefault(key, 0) + 1);
-        }
-
-        //Check
-        int max = Integer.MIN_VALUE;
-        for(char key : map.keySet()){
             if(map.get(key) > max){
                 max = map.get(key);
                 answer = key;
@@ -39,6 +35,7 @@ public class Main {
 
         return answer;
     }
+
 
     public static void main(String[] args) {
 

@@ -1,0 +1,32 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public int[] solution(int n) {
+        int[] answer = new int[n];
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    10
+        //Output:   1 1 2 3 5 8 13 21 34 55
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+
+        for(int x: T.solution(n)){
+            System.out.print(x + " ");
+        }
+
+        System.out.println();
+        pivo(n);
+    }
+
+
+}

@@ -11,7 +11,7 @@ public class Main {
      *          if lt.isNotAlphabet : lt++
      *          else if not rt.isNotAlphabet : rt--;
      *          else:
-     *              swap(s[lt], s[rt]
+     *              swap(s[lt], s[rt])
      *              lt++, rt--
      * answer <- toString(s)
      */

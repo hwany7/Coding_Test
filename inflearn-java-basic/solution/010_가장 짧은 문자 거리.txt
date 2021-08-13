@@ -17,12 +17,12 @@ public class Main {
      *
      * [step 2: right -> left 기준 순회]
      * p <- max int
-     * for str.length() ~ i, i-- :
+     * for i=str.length()-1 ~ -1, i-- :
      *      if char(i) == t :
      *              p <- 0
      *      else
      *          p++
-     *          if answer[i] <- max(answer[i], p)
+     *          answer[i] <- max(answer[i], p)
      */
 
     public int[] solution(String str, char t) {

@@ -1,0 +1,28 @@
+package basic.inflearn;
+
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+
+    public String solution(String a, String b) {
+        String answer = "YES";
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    AbaAeCe
+        //          baeeACA
+        //Output:   YES
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String a = kb.next();
+        String b = kb.next();
+        System.out.println(T.solution(a, b));
+    }
+
+}

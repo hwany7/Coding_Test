@@ -1,0 +1,30 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public int solution(int n) {
+        int answer = 0;
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    15
+        //Output:   3
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+
+        System.out.print(T.solution(n));
+
+
+
+    }
+
+
+}

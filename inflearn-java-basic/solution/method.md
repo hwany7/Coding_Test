@@ -60,6 +60,9 @@ ___
 ### str.toCharArray() : return char[]
 * 해당 str 을 문자형 배열로 만들어서 반환
 
+### str.indexOf(char) : return int
+* str 에서 해당 char 를 찾아 인덱스를 반환
+
 ### str.split(string) : return String[]
 * " "과 같은 string 을 기준으로 str 을 잘라서 String 배열로 반환
 
@@ -142,3 +145,18 @@ ___
 
 ### treeSet.last() : return last value
 * 가장 나중의 값을 반환
+
+### Stack<제너릭> stack = new Stack<>()
+* 스택을 제너릭 형으로 생성
+
+### stack.push(value)
+* 스택 맨 끝에 value 를 추가
+
+### stack.pop() : return value
+* 스택에서 맨 끝 value 를 삭제하고 반환
+
+### stack.size() : return int
+* 스택의 크기를 반환
+
+### stack.get(index) : return int
+* 스택의 index 번째 value 를 반환(삭제x)

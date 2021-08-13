@@ -12,6 +12,23 @@ public class Main {
 
     public String solution(String str) {
 
+//        //방법 1
+//        String answer = "YES";
+//        String s = "";
+//        for(char x : str.toCharArray()){
+//            if(Character.isAlphabetic(x)) s += Character.toUpperCase(x);
+//        }
+//
+//        int lt = 0;
+//        int rt = s.length() - 1;
+//
+//        while (lt < rt){
+//            if(s.charAt(lt) != s.charAt(rt)) return "NO";
+//            lt++;
+//            rt--;
+//        }
+
+        //방법2
         String answer = "NO";
         str = str.toUpperCase().replaceAll("[^A-Z]", "");
 

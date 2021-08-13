@@ -3,35 +3,25 @@ package basic.inflearn;
 import java.util.Scanner;
 
 public class Main {
-	
-	/*
-	 * for i: str 순회
-	 * if indexOf(char) == i : answer += str[i]
-	 */
 
 	public String solution(String str) {
-		
 		String answer = "";
-		
-		for(int i=0; i<str.length(); i++) {
-			if(str.indexOf(str.charAt(i)) == i) {
-				answer += str.charAt(i);
-			}
-		}
-		
+
 		return answer;
 	}
 
 	public static void main(String[] args) {
 
-        //Input: ksekkset
-        //Output: kset
+        //Input: it is time to study
+        //Output: study
 
 		Main T = new Main();
 		Scanner kb = new Scanner(System.in);
-		String str = kb.next();
+		String str = kb.nextLine();
 
 		System.out.println(T.solution(str));
 	}
 
 }
+
+
