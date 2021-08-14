@@ -78,7 +78,8 @@ ___
 ### str.replaceAll(regex, replacement) : return string
 * 정규식을 입력받아 해당하는 문자를 대체문자로 변환해서 String 으로 반환
 
-
+### str = int 
+* String 문자열에 int 형 변수를 넣으면 char 로 들어감
 
 
 
@@ -152,8 +153,12 @@ ___
 ### stack.push(value)
 * 스택 맨 끝에 value 를 추가
 
+
 ### stack.pop() : return value
 * 스택에서 맨 끝 value 를 삭제하고 반환
+
+### stack.peek() : return value
+* 스택에서 맨 끝 value 를 반환(삭제x)
 
 ### stack.size() : return int
 * 스택의 크기를 반환
