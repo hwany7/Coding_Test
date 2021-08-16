@@ -165,3 +165,18 @@ ___
 
 ### stack.get(index) : return int
 * 스택의 index 번째 value 를 반환(삭제x)
+
+### Queue<Integer> queue = new LinkedList<>()
+* 큐를 선언
+
+### queue.offer(value)
+* 큐에 value 를 추가
+
+### queue.poll() : return value
+* 큐의 맨앞 원소를 제거하고 반환
+
+### queue.isEmpty() : return boolean
+* 큐가 비어있는지 체크하고 결과 반환
+
+### queue.size() : return int
+* 큐의 사이즈를 반환
