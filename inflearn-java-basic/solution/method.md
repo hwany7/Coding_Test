@@ -180,3 +180,6 @@ ___
 
 ### queue.size() : return int
 * 큐의 사이즈를 반환
+
+### queue.contains(value) : return boolean
+* 해당 value 값이 큐 안에 존재하는지 체크하고 결과 반환

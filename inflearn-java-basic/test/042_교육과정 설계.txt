@@ -1,0 +1,32 @@
+package basic.inflearn;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+
+public class Main {
+
+    public String solution(String need, String plan) {
+        String answer = "YES";
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    CBA
+        //          CBDAGE
+        //Output:   YES
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        String a = kb.next();
+        String b = kb.next();
+
+        System.out.println(T.solution(a, b));
+
+    }
+
+}
