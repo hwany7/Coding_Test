@@ -4,31 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    /*
-     * for i=1 ~ n:
-     *      tmp <- arr[i]
-     *      j <- none
-     *      for j=i-1 ~ j>-1, j--:
-     *          if arr[j] > tmp:
-     *              arr[j+1] <- arr[j]
-     *          else:
-     *              break;
-     *      arr[j+1] <- tmp
-     *
-     */
-
     public int[] solution(int n, int[] arr) {
-
-        for(int i=1; i<n; i++){
-            int tmp = arr[i];
-            int j;
-
-            for(j=i-1; j>-1; j--){
-                if(arr[j] > tmp) arr[j+1] = arr[j];
-                else break;
-            }
-            arr[j+1] = tmp;
-        }
 
         return arr;
     }
