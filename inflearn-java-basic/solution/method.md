@@ -36,17 +36,20 @@ ___
 
 
 
-
 ### String.valueOf(char[]) : return String
 * char[]을 입력받아 String 으로 반환
 
 
 
+### Arrays.sort(arr) : return Array
+* arr 를 입력받아 오름차순 정렬하여 반환
 
 
 
 
 
+### arr.clone() : return arr
+* arr 를 깊은 복사하여 반환
 
 ### str.toUpperCase()  : return String
 * str 을 모두 대문자로 만들어 string 반환

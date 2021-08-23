@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class Main {
 
-    /*
+    /* 굳이 answer를 먼저 1로 초기화해서 O(n)작업을 수행할 필요없이
+     * for문에 cnt를 넣어 사용
+     *
      * for i ~ n :
      *      cnt <- 1
      *      for j ~ n :
@@ -14,7 +16,6 @@ public class Main {
      */
 
     public int[] solution(int n, int[] arr) {
-
        int[] answer = new int[n];
 
        for(int i=0; i<n; i++){
@@ -47,8 +48,5 @@ public class Main {
         for(int x : T.solution(n, arr)){
             System.out.print(x + " ");
         }
-
     }
-
-
 }
