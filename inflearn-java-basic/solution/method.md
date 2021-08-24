@@ -44,6 +44,15 @@ ___
 ### Arrays.sort(arr) : return Array
 * arr 를 입력받아 오름차순 정렬하여 반환
 
+### Arrays.stream(arr).max().getAsInt() : return int
+* arr 를 입력 받아서 가장 큰 수를 반환
+* stream 은 리덕션 메서드이고 거기에는 다양한 기능들이 존재
+* stream().max()는 옵셔널 int 형으로 반환하므로 getAsInt()가 필요
+
+### Arrays.stream(arr).sum() : return int
+* arr 를 입력 받아 그 합계를 반환
+* stream().sum()은 int 형 으로 반환하므로  getAsInt()가 불필요
+
 
 
 
