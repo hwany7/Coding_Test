@@ -1,0 +1,24 @@
+package basic.inflearn;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public void DFS(int n){
+
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    11
+        //Output:   1011
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+        T.DFS(n);
+    }
+}

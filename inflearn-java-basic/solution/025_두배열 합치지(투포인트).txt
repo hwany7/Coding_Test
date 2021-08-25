@@ -6,38 +6,38 @@ import java.util.Scanner;
 public class Main {
 
     /*
-     * p1 <- 0
-     * p2 <- 0
-     * while p1<n and p2<m:
-     *      if a[p1] < a[p2]:
-     *          answer.add(a[p1])
-     *          p1++
+     * ai <- 0
+     * bi <- 0
+     * while ai<n and bi<m:
+     *      if a[ai] < a[bi]:
+     *          answer.add(a[ai])
+     *          ai++
      *      else:
-     *          answer.add(b[p2])
-     *          p2++
-     * while p1 < n:
-     *      answer.add(a[p1])
-     *      p1++
-     * while p2 <m:
-     *      answer.add(b[p2])
-     *      p2++
+     *          answer.add(b[bi])
+     *          bi++
+     * while ai < n:
+     *      answer.add(a[ai])
+     *      ai++
+     * while bi <m:
+     *      answer.add(b[bi])
+     *      bi++
      */
 
     public ArrayList<Integer> solution(int n, int m, int[] a, int[] b) {
 
         ArrayList<Integer> answer = new ArrayList<Integer>();
-        int ap = 0, bp = 0;
+        int ai = 0, bi = 0;
 
-        while (ap<n && bp<m){
-            if(a[ap] < b[bp]) answer.add(a[ap++]);
-            else answer.add(b[bp++]);
+        while (ai<n && bi<m){
+            if(a[ai] < b[bi]) answer.add(a[ai++]);
+            else answer.add(b[bi++]);
         }
 
-        while (ap < n){
-            answer.add(a[ap++]);
+        while (ai < n){
+            answer.add(a[ai++]);
         }
-        while (bp < m){
-            answer.add(b[bp++]);
+        while (bi < m){
+            answer.add(b[bi++]);
         }
 
         return answer;
@@ -69,14 +69,5 @@ public class Main {
         for(int x: T.solution(n, m, a, b)){
             System.out.print(x + " ");
         }
-
-
-
-
-
-
-
     }
-
-
 }
