@@ -34,9 +34,8 @@ public class Main {
             int value = map.getOrDefault(key, 0);
 
             if(value == 0) return "NO";
-            else map.put(key, map.get(key) - 1);
+            else map.put(key, value - 1);
         }
-
 
         return answer;
     }
@@ -52,6 +51,6 @@ public class Main {
         String a = kb.next();
         String b = kb.next();
         System.out.println(T.solution(a, b));
-    }
 
+    }
 }

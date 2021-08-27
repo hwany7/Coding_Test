@@ -19,11 +19,9 @@ public class Main {
      */
 
     public char solution(int n, String s) {
-
         char answer = ' ';
         HashMap<Character, Integer> map = new HashMap<>();
 
-        //카운트 + 체크
         int max = Integer.MIN_VALUE;
         for(char key : s.toCharArray()){
             map.put(key, map.getOrDefault(key, 0) + 1);
@@ -36,7 +34,6 @@ public class Main {
         return answer;
     }
 
-
     public static void main(String[] args) {
 
         //Input:    15
@@ -48,6 +45,6 @@ public class Main {
         int n = kb.nextInt();
         String str = kb.next();
         System.out.println(T.solution(n, str));
-    }
 
+    }
 }

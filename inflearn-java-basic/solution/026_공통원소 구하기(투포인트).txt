@@ -4,41 +4,40 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
 public class Main {
 
     /*
-     * ap <- 0
-     * bp <- 0
+     * ai <- 0
+     * bi <- 0
      * sort(a)
      * sort(b)
-     * while ap<n and bp<m:
-     *      if a[ap] == b[bp]:
-     *          answer.add(a[ap])
-     *          ap++
-     *          bp++
-     *      else if(a[ap] < b[bp]: ap++
-     *      else bp++
+     * while ai<n and bi<m:
+     *      if a[ai] == b[bi]:
+     *          answer.add(a[ai])
+     *          ai++
+     *          bi++
+     *      else if(a[ai] < b[bi]: ai++
+     *      else bi++
      */
 
     public ArrayList<Integer> solution(int n, int m, int[] a, int[] b) {
-
         ArrayList<Integer> answer = new ArrayList<Integer>();
-        int ap = 0, bp= 0;
 
         Arrays.sort(a);
         Arrays.sort(b);
 
-        while (ap<n && bp<m){
-            if(a[ap] == b[bp]){
-                answer.add(a[ap]);
-                ap++;
-                bp++;
-            }
-            else if(a[ap] < b[bp]) ap++;
-            else bp++;
-        }
+        int ai = 0;
+        int bi = 0;
 
+        while(ai<n && bi<m){
+            if(a[ai] == b[bi]){
+                answer.add(a[ai]);
+                ai++;
+                bi++;
+            }
+            else if(a[ai] > b[bi]) bi++;
+            else ai++;
+        }
 
         return answer;
     }
@@ -71,6 +70,4 @@ public class Main {
         }
 
     }
-
-
 }

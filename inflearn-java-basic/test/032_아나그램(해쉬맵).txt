@@ -23,6 +23,6 @@ public class Main {
         String a = kb.next();
         String b = kb.next();
         System.out.println(T.solution(a, b));
-    }
 
+    }
 }

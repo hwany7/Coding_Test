@@ -1,0 +1,75 @@
+package basic.inflearn;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+class Node{
+    int data;
+    Node lt, rt;
+
+    public Node(int data){
+        this.data = data;
+        lt = rt = null;
+    }
+}
+
+public class Main {
+
+    /*
+     * new Queue q
+     * L <- 0
+     * while q.isNotEmpty():
+     *      len <- q.size()
+     *      for i ~ len:
+     *          cut <- q.poll()
+     *          if cur.lt != null:
+     *              q.offer(cur.lt)
+     *          if cur.rt != null:
+     *              q.offer(cur.rt)
+     *      L++
+     */
+
+    Node root;
+    public void BFS(Node root) {
+        Queue<Node> q = new LinkedList<>();
+
+        q.offer(root);
+        int L = 0;
+
+        while (!q.isEmpty()){
+            int len = q.size();
+            System.out.print(L + " Level : ");
+            for(int i=0; i<len; i++){
+                Node cur = q.poll();
+                System.out.print(cur.data + " ");
+
+                if(cur.lt != null) q.offer(cur.lt);
+                if(cur.rt != null) q.offer(cur.rt);
+            }
+            L++;
+            System.out.println();
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        //Output:   0 Level : 1
+        //          1 Level : 2 3
+        //          2 Level : 4 5 6 7
+
+        Main T = new Main();
+
+        T.root = new Node(1);
+        T.root.lt = new Node(2);
+        T.root.rt = new Node(3);
+        T.root.lt.lt = new Node(4);
+        T.root.lt.rt = new Node(5);
+        T.root.rt.lt = new Node(6);
+        T.root.rt.rt = new Node(7);
+
+        T.BFS(T.root);
+
+    }
+}

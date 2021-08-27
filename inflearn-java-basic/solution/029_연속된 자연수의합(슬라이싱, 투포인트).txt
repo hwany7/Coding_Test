@@ -29,7 +29,6 @@ public class Main {
                 sum -= lt++;
                 if(sum == n) answer++;
             }
-
         }
         return answer;
     }
@@ -46,9 +45,5 @@ public class Main {
 
         System.out.print(T.solution(n));
 
-
-
     }
-
-
 }

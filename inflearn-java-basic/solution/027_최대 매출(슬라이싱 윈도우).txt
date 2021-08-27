@@ -8,25 +8,25 @@ public class Main {
      * sum <- 0
      * for i ~ k:
      *      sum += arr[i]
-     * asnwer <- sum
-     * for i=k ~ n:
-     *      sum += (arr[i] - arr[i-k])
+     * for i=k-1 ~ n:
+     *      sum += arr[i]
      *      answer <- max(sum, answer)
+     *      sum -= arr[i-k+1]
+     *
      */
 
     public int solution(int n, int k, int[] arr) {
-
-        int answer = 0;
+        int answer = Integer.MIN_VALUE;
         int sum = 0;
 
-        for(int i=0; i<k; i++){
+        for(int i=0; i<k-1; i++){
             sum += arr[i];
         }
-        answer = sum;
 
-        for(int i=k; i<n; i++){
-            sum += (arr[i] - arr[i-k]);
-            answer = Math.max(answer, sum);
+        for(int i=k-1; i<n; i++){
+            sum += arr[i];
+            answer = Math.max(sum, answer);
+            sum -= arr[i-k+1];
         }
 
         return answer;
@@ -51,9 +51,5 @@ public class Main {
 
         System.out.print(T.solution(n, k, arr));
 
-
-
     }
-
-
 }

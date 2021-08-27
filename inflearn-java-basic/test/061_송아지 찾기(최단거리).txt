@@ -1,19 +1,13 @@
 package basic.inflearn;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Main {
 
-    /*
-     * cnt <- 1
-     * n <- n-1
-     * while n > 0:
-     *      cnt++
-     *      n <- n - cnt
-     *      if n%cnt == 0: answer++
-     */
 
-    public int solution(int n) {
+    public int BFS(int s, int e){
         int answer = 0;
 
         return answer;
@@ -21,14 +15,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //Input:    15
+        //Input:    5 14
         //Output:   3
 
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
+        int s = kb.nextInt();
+        int e = kb.nextInt();
 
-        int n = kb.nextInt();
+        System.out.println(T.BFS(s, e));
 
-        System.out.print(T.solution(n));
     }
 }
