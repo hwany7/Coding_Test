@@ -22,37 +22,36 @@ public class Main {
      *      if map_a == map_b:
      *          answer++
      *      map_a.put(arr[lt], map_a.get(arr[lt]) -1)
-     *      if map_a.get(arr[lt] == 0):
+     *      if map_a.get(arr[lt]) == 0:
      *          map_a.remove(arr[lt])
      *      lt++
      */
 
     public int solution(String a, String b) {
-
         int answer = 0;
+        int len = b.length();
+
         HashMap<Character, Integer> mapA = new HashMap<>();
         HashMap<Character, Integer> mapB = new HashMap<>();
 
-        for(char key : b.toCharArray()){
-            mapB.put(key, mapB.getOrDefault(key, 0) + 1);
+        for(char x : b.toCharArray()){
+            mapB.put(x, mapB.getOrDefault(x, 0) + 1);
         }
 
-        char[] arr = a.toCharArray();
-        for(int i=0; i<b.length()-1; i++){
-            mapA.put(arr[i], mapA.getOrDefault(arr[i], 0) + 1);
+        for(int i=0; i<len-1; i++){
+            mapA.put(a.charAt(i), mapA.getOrDefault(a.charAt(i), 0) + 1);
         }
 
         int lt = 0;
-        for(int rt=b.length()-1; rt<a.length(); rt++){
-            mapA.put(arr[rt], mapA.getOrDefault(arr[rt], 0) + 1);
+        for(int rt=len-1; rt<a.length(); rt++){
+            mapA.put(a.charAt(rt), mapA.getOrDefault(a.charAt(rt), 0) + 1);
 
             if(mapA.equals(mapB)) answer++;
 
-            mapA.put(arr[lt], mapA.get(arr[lt]) - 1);
-            if(mapA.get(arr[lt]) == 0) mapA.remove(arr[lt]);
+            mapA.put(a.charAt(lt), mapA.get(a.charAt(lt)) - 1);
+            if(mapA.get(a.charAt(lt)) == 0) mapA.remove(a.charAt(lt));
             lt++;
         }
-
 
         return answer;
     }
@@ -69,6 +68,6 @@ public class Main {
         String b = kb.next();
 
         System.out.print(T.solution(a, b));
-    }
 
+    }
 }

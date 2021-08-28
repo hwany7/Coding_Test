@@ -36,6 +36,7 @@ public class Main {
                 }
             }
         }
+
         int cnt = 0;
         for(int x : treeSet){
             cnt++;
@@ -62,6 +63,6 @@ public class Main {
             arr[i] = kb.nextInt();
         }
         System.out.print(T.solution(arr, n, k));
-    }
 
+    }
 }

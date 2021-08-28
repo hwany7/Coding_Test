@@ -14,8 +14,9 @@ public class Main {
      *          if stack.isEmpty():
      *              return "NO"
      *          stack.pop()
-     * if !stack.isEmpty():
-     *      return "YES"
+     * if stack.isNotEmpty():
+     *      return "NO"
+     * return "YES"
      */
 
     public String solution(String str) {
@@ -44,6 +45,6 @@ public class Main {
 
         String str = kb.next();
         System.out.print(T.solution(str));
-    }
 
+    }
 }
