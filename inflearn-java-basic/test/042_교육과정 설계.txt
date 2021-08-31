@@ -4,11 +4,37 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-
 public class Main {
+
+    /*
+     * new Queue q
+     * for x in need:
+     *      q.offer(x)
+     * for x in plan:
+     *      if q.contain(x):
+     *          if x != q.pool():
+     *              return "NO"
+     * if q.inNotEmpty():
+     *      return "NO"
+     *
+     * return "YES"
+     */
 
     public String solution(String need, String plan) {
         String answer = "YES";
+        Queue<Character> qu = new LinkedList<>();
+
+        for(char x : need.toCharArray()){
+            qu.offer(x);
+        }
+
+        for(char x : plan.toCharArray()){
+            if(qu.contains(x)){
+                if(x != qu.poll()) return "NO";
+            }
+        }
+
+        if(!qu.isEmpty()) return "NO";
 
         return answer;
     }
@@ -28,5 +54,4 @@ public class Main {
         System.out.println(T.solution(a, b));
 
     }
-
 }

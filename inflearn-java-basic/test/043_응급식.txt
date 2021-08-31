@@ -4,12 +4,61 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-
-
 public class Main {
+
+    /*
+     * new Person(int id, int num)
+     * new Queue
+     *
+     * for i ~ n:
+     *      q.offer(new Person(i, arr[i])
+     *
+     * while(q.isNotEmpty()):
+     *      Person cur <- q.poll()
+     *      for x in q:
+     *          if x.num > cur.num:
+     *              q.offer(cur)
+     *              cur <- null
+     *              break
+     *      if cur != null:
+     *          answer++
+     *          if cur.id == m:
+     *              return answer;
+     *
+     */
+
+    class Person{
+        int id;
+        int num;
+        public Person(int id, int num){
+            this.id = id;
+            this.num = num;
+        }
+    }
 
     public int solution(int n, int m, int[] arr) {
         int answer = 0;
+        Queue<Person> q = new LinkedList<>();
+
+        for(int i=0; i<n; i++){
+            q.offer(new Person(i, arr[i]));
+        }
+
+        while (!q.isEmpty()){
+            Person cur = q.poll();
+            for(Person x : q){
+                if(x.num > cur.num){
+                    q.offer(cur);
+                    cur = null;
+                    break;
+                }
+            }
+            if(cur != null){
+                answer++;
+                if(cur.id == m) return answer;
+            }
+        }
+
 
         return answer;
     }
@@ -33,5 +82,4 @@ public class Main {
         System.out.println(T.solution(n, m, arr));
 
     }
-
 }

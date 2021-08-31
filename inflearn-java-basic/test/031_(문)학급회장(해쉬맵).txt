@@ -1,0 +1,28 @@
+package basic.inflearn;
+
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+
+    public char solution(int n, String s) {
+        char answer = ' ';
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    15
+        //          BACBACCACCBDEDE
+        //Output:   C
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        String str = kb.next();
+        System.out.println(T.solution(n, str));
+    }
+
+}

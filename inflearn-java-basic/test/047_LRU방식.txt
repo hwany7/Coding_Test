@@ -4,8 +4,34 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * for x int arr:
+     *      index <- size-1 //MISS
+     *      for i ~ size:
+     *          if x == answer[i]:
+     *              index <- i //HIT
+
+     *      for i=index ~ i>0, i--:
+     *          answer[i] = answer[i-1]
+     *      answer[0] <- x
+     */
+
     public int[] solution(int size, int n, int[] arr) {
         int[] answer = new int[size];
+
+        for (int x : arr) {
+            int index = size-1;
+
+            for (int i=0; i<size; i++) {
+                if (answer[i] == x) index = i;
+            }
+
+            for (int i=index; i>0; i--) {
+                answer[i] = answer[i-1];
+            }
+
+            answer[0] = x;
+        }
 
         return answer;
     }
@@ -32,5 +58,4 @@ public class Main {
         }
 
     }
-
 }

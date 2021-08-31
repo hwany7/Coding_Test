@@ -5,6 +5,18 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * DFS(vertex):
+     *      if vertex == n:
+     *          answer++
+     *      else:
+     *          for x in graph.get(vertex):
+     *              if check[x] == 0:
+     *                  check[x] <- 1
+     *                  DFS(x)
+     *                  check[x] <- 0
+     */
+
     static int n;
     static int m;
     static int answer = 0;
@@ -13,8 +25,16 @@ public class Main {
     static int[] check;
 
     public void DFS(int vertex){
-
-    }
+        if(vertex == n) answer++;
+        else{
+            for(int x : graph.get(vertex)){
+                if(check[x] == 0){
+                    check[x] = 1;
+                    DFS(x);
+                    check[x] = 0;
+                }
+            }
+        }
     }
 
     /***

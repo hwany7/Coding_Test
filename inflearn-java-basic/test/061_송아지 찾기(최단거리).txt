@@ -6,9 +6,57 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * new int[] check
+     * new int[] move <- {-1 1, 5}
+     * new Queue q
+     *
+     * level <- 0
+     * check[s] <- 1
+     * q.offer(s)
+     *
+     * while q.isNotEmpty():
+     *      len <- q.size()
+     *      for i ~ len:
+     *          x <- q.poll()
+     *          for m in move:
+     *              x_move <- x + m
+     *              if x_move == e:
+     *                  return level + 1
+     *              if x_move>0 and x_move<10001 and check[x_move]==0:
+     *                  check[x_move] = 1
+     *                  q.offer(x_move)
+     *      level++
+     *
+     */
 
     public int BFS(int s, int e){
         int answer = 0;
+        int[] check = new int[100001];
+        int[] move = {-1, 1, 5};
+        int level = 0;
+
+        Queue<Integer> q = new LinkedList<>();
+        check[s] = 1;
+        q.offer(s);
+
+        while (!q.isEmpty()){
+            int len = q.size();
+
+            for(int i=0; i<len; i++){
+                int x = q.poll();
+                for(int m : move){
+                    int x_move = x + m;
+
+                    if(x_move == e) return level + 1;
+                    if(x_move>0 && x_move<10001 && check[x_move] == 0){
+                        check[x_move] = 1;
+                        q.offer(x_move);
+                    }
+                }
+            }
+            level++;
+        }
 
         return answer;
     }

@@ -4,9 +4,40 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * max <- MIN_VALUE
+     * for x1=1 ~ n+1 :
+     *      cnt <- 0
+     *      for x2=1 ~ n+1 :
+     *          for k=1 ~ 6:
+     *              if arr[x1][k] == arr[x2][k]:
+     *                  cnt++
+     *                  break
+     *      if cnt > max :
+     *          answer <- x1
+     *          max <- cnt
+     */
 
     public int solution(int n, int[][] arr) {
+
         int answer = 0;
+        int max = Integer.MIN_VALUE;
+
+        for(int x1=1; i<n+1; i++){
+            int cnt = 0;
+            for(int x2=1; j<n+1; j++){
+                for(int k=1; k<6; k++) {
+                    if (arr[x1][k] == arr[x2][k]) {
+                        cnt++;
+                        break;
+                    }
+                }
+            }
+            if(cnt > max){
+                answer = x1;
+                max = cnt;
+            }
+        }
 
         return answer;
     }
@@ -34,9 +65,5 @@ public class Main {
         }
 
         System.out.print(T.solution(n, arr));
-
-
     }
-
-
 }

@@ -4,16 +4,52 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * for i=1 ~ n:
+     *      tmp <- arr[i]
+     *      j <- none
+     *      for j=i ~ j>0, j--:
+     *          if arr[j-1] > tmp:
+     *              arr[j] <- arr[j-1]
+     *          else:
+     *              break;
+     *      arr[j] <- tmp
+     *
+     */
+
     public int[] solution(int n, int[] arr) {
+
+        for(int i=1; i<n; i++){
+            int tmp = arr[i];
+            int j;
+
+            for(j=i; j>0; j--){
+                if(arr[j-1] > tmp) arr[j] = arr[j-1];
+                else break;
+            }
+            arr[j] = tmp;
+        }
 
         return arr;
     }
+    /**
+     * 삽입정렬은 앞에서부터 정렬된 집합을 분포시킨다
+     * i번째 temp 를 먼저 빼둬서 끌어당기며 j번 반복문을 실행한다
+     * j번 반복문이 끝나면 j번 지점에 temp 를 삽입한다
+     * ex) 13 5 11 7 23 15
+     *
+     * i=1, tmp=5:  (13) 13 11 7 23 15  -> (5) 13 11 7 23 15 :hit
+     * i=2, tmp=11: (5 13) 13 7 23 15   -> (5 11) 13 7 23 15 :hit
+     * i=3, tmp=7:  (5 11 13) 13 23 15  -> (5 11 11) 13 23 15 -> (5 7 11) 13 23 15 :hit
+     * i=4, tmp=23: (5 7 11 13) 23 15 :no hit
+     * i=5, tmp=15: (5 7 11 13 23 23)   -> (5 7 11 13 15) 23 :hit
+     */
 
     public static void main(String[] args) {
 
         //Input:    6
-        //          11 7 5 6 10 9
-        //Output:   5 6 7 9 10 11
+        //          13 5 11 7 23 15
+        //Output:   5 7 11 13 15 23
 
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
@@ -29,5 +65,4 @@ public class Main {
         }
 
     }
-
 }

@@ -7,8 +7,33 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * new Queue q
+     * for i=1 ~ n+1:
+     *      q.offer(i)
+     * while q.isNotEmpty():
+     *      for i=1 ~ k:
+     *          q.offer(q(poll())
+     *      q.poll()
+     *      if q.size() == 1:
+     *          answer <- q.poll()
+     */
+
     public int solution(int n, int k) {
         int answer = 0;
+        Queue<Integer> q = new LinkedList<>();
+
+        for(int i=1; i<n+1; i++){
+            q.offer(i);
+        }
+
+        while (!q.isEmpty()){
+            for(int i=1; i<k; i++){
+                q.offer(q.poll());
+            }
+            q.poll();
+            if(q.size() == 1) answer = q.poll();
+        }
 
         return answer;
     }
@@ -27,5 +52,4 @@ public class Main {
         System.out.println(T.solution(n, k));
 
     }
-
 }

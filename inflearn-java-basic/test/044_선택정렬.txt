@@ -4,10 +4,41 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * for i ~ n-1:
+     *      index <- i
+     *      for j=i+1 ~ n:
+     *          if arr[index] > arr[j]:
+     *              index <- j
+     *      swap(arr[i],arr[index])
+     */
+
+
     public int[] solution(int n, int[] arr) {
+
+        for(int i=0; i<n-1; i++){
+            int index = i;
+            for(int j=i+1; j<n; j++){
+                if(arr[j] < arr[index]) index = j;
+            }
+            int tmp = arr[i];
+            arr[i] = arr[index];
+            arr[index] = tmp;
+        }
 
         return arr;
     }
+
+        /**
+         * 선택 정렬은 앞에서부터 정렬 시킨다
+         * ex) 13 5 11 7 23 15
+         *
+         * i=0: (5) 13 11 7 23 15 :hit
+         * i=1: (5 7) 11 13 23 15 :hit
+         * i=2: (5 7 11) 13 23 15 :no hit
+         * i=3: (5 7 11 13) 23 15 :no hit
+         * i=4: (5 7 11 13 15) 23 :hit
+         */
 
     public static void main(String[] args) {
 
@@ -29,5 +60,4 @@ public class Main {
         }
 
     }
-
 }

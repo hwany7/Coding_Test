@@ -4,8 +4,32 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * for x in tstr:
+     *      if x isDigit :
+     *                answer <- x toDigit
+     */
+
     public int solution(String str) {
+
         int answer = 0;
+
+//        //방법1. 아스키 코드 사용
+//        for(char x: str.toCharArray()){
+//            if(x>=48 && x<=57){
+//                answer = answer * 10 + (x-48);
+//             }
+//         }
+
+        //방법2. Digit로 체크하고, 문자열을 parseInt 시키기
+        String tmp = "";
+
+        for(char x: str.toCharArray()){
+            if(Character.isDigit(x)){
+                tmp += x; //문자열을 누적
+            }
+        }
+        answer = Integer.parseInt(tmp);
 
         return answer;
 }

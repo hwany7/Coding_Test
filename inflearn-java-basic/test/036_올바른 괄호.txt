@@ -5,9 +5,32 @@ import java.util.Stack;
 
 public class Main {
 
+    /*
+     * new Stack<Character> stack
+     * for x in str:
+     *      if x == '(':
+     *          stack.push(x)
+     *      else:
+     *          if stack.isEmpty():
+     *              return "NO"
+     *          stack.pop()
+     * if stack.isNotEmpty():
+     *      return "NO"
+     * return "YES"
+     */
 
     public String solution(String str) {
-        String answer = " ";
+        String answer = "YES";
+        Stack<Character> stack = new Stack<>();
+
+        for(char x : str.toCharArray()){
+            if(x == '(') stack.push(x);
+            else{
+                if(stack.isEmpty()) return "NO";
+                stack.pop();
+            }
+        }
+        if(!stack.isEmpty()) return "NO";
 
         return answer;
     }
@@ -22,6 +45,6 @@ public class Main {
 
         String str = kb.next();
         System.out.print(T.solution(str));
-    }
 
+    }
 }

@@ -16,8 +16,41 @@ class Node{
 
 public class Main {
 
+    /*
+     * DFS(node):
+     *      new Queue q
+     *      level <-0
+     *      q.offer(node)
+     *      while q.isNoEmpty():
+     *          cur <- q.poll()
+     *          if cur.lt==null and cur.rt==null:
+     *              return level
+     *          if cur.lt != null:
+     *              q.offer(cur.lt)
+     *          if cur.rt != null:
+     *              q.offer(cur.rt)
+     *      level++
+     */
+
     Node root;
     public int BFS(Node node) {
+        Queue<Node> q = new LinkedList<>();
+
+        int level = 0;
+        q.offer(node);
+
+        while (!q.isEmpty()){
+            int len = q.size();
+
+            for(int i=0; i<len; i++){
+                Node cur = q.poll();
+                if(cur.lt==null && cur.rt==null) return level;
+
+                if(cur.lt != null) q.offer(cur.lt);
+                if(cur.rt != null) q.offer(cur.rt);
+            }
+            level++;
+        }
 
         return -1;
     }

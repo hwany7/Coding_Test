@@ -1,0 +1,29 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public int[] solution(String str, char t) {
+        int[] answer = new int[str.length()];
+
+        return answer;
+}
+
+    public static void main(String[] args) {
+
+        //Input: teachermode e
+        //Output: 1 0 1 2 1 0 1 2 2 1 0
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.next();
+        char c = kb.next().charAt(0);
+
+        for(int x : T.solution(str, c)){
+            System.out.print(x + " ");
+        }
+
+    }
+
+}

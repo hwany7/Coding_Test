@@ -4,12 +4,32 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * answer <- min_value
+     *
+     * DFS(index, sum, arr):
+     *      if sum > c:
+     *          return
+     *      if index == n:
+     *          answer = max(sum, answer)
+     *      else:
+     *          DFS(index+1, sum+arr[index], arr)
+     *          DFS(index+1, sum, arr)
+     */
+
     static int answer = Integer.MIN_VALUE;
     static int c;
     static int n;
 
     public void DFS(int index, int sum, int[] arr){
+        if (sum > c) return;
 
+        if (index == n){
+            answer = Math.max(sum, answer);
+        }else {
+            DFS(index+1, sum+arr[index], arr);
+            DFS(index+1, sum, arr);
+        }
     }
 
     public static void main(String[] args) {

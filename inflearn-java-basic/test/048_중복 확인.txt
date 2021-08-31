@@ -5,10 +5,22 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * arr.sort()
+     * for i ~ n-1:
+     *      if arr[i] == arr[i+1]:
+     *          return "D";
+     * return "U";
+     */
 
     //Hash Map(O(n) 이 편하지만, 정렬로도 풀수 있다 O(nlog * n)
     public String solution(int n, int[] arr) {
-        String answer = " ";
+        String answer = "U";
+        Arrays.sort(arr);
+
+        for(int i=0; i<n-1; i++){
+            if(arr[i] == arr[i+1]) return "D";
+        }
 
         return answer;
     }

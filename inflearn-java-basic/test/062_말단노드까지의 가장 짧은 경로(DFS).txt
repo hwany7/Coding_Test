@@ -14,9 +14,19 @@ class Node{
 
 public class Main {
 
+    /*
+     * DFS(level, node):
+     *      if node.lt==null and node.rt==null"
+     *              return level
+     *      else:
+     *          return min(DFS(level+1, node.lt), DFS(level+1, node.rt))
+     *
+     */
+
     Node root;
     public int DFS(int L, Node node){
-
+        if(node.lt==null && node.rt==null) return L;
+        else return Math.min(DFS(L+1, node.lt), DFS(L+1, node.rt));
     }
 
     /***

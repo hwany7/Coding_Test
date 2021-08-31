@@ -5,8 +5,40 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+     * ai <- 0
+     * bi <- 0
+     * while ai<n and bi<m:
+     *      if a[ai] < a[bi]:
+     *          answer.add(a[ai])
+     *          ai++
+     *      else:
+     *          answer.add(b[bi])
+     *          bi++
+     * while ai < n:
+     *      answer.add(a[ai])
+     *      ai++
+     * while bi <m:
+     *      answer.add(b[bi])
+     *      bi++
+     */
+
     public ArrayList<Integer> solution(int n, int m, int[] a, int[] b) {
+
         ArrayList<Integer> answer = new ArrayList<Integer>();
+        int ai = 0, bi = 0;
+
+        while (ai<n && bi<m){
+            if(a[ai] < b[bi]) answer.add(a[ai++]);
+            else answer.add(b[bi++]);
+        }
+
+        while (ai < n){
+            answer.add(a[ai++]);
+        }
+        while (bi < m){
+            answer.add(b[bi++]);
+        }
 
         return answer;
     }

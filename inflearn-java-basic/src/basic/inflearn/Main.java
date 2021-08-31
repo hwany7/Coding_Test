@@ -5,43 +5,56 @@ import java.util.Scanner;
 public class Main {
 
     /*
-     *
+     * new int[m] pm
+     * DFS(level):
+     *      if  level == m:
+     *          output:
+     *      else:
+     *          for i=1 ~ n+1:
+     *              pm[level] = i
+     *              DFS(level+1)
      */
 
-    static int answer = Integer.MIN_VALUE;
-    static int c;
+    static int[] pm;
     static int n;
+    static int m;
 
-    public void DFS(int index, int sum, int[] arr){
-        if (sum > c) return;
-
-        if (index == n){
-            answer = Math.max(answer, sum);
+    public void DFS (int level) {
+        if (level == m) {
+            for(int x : pm) {
+                System.out.print(x + " ");
+            }
+            System.out.println();
         }else {
-            DFS(index+1, sum+arr[index], arr);
-            DFS(index+1, sum, arr);
+            for (int i=1; i<n+1; i++) {
+                pm[level] = i;
+                DFS(level+1);
+            }
         }
+
     }
 
     public static void main(String[] args) {
 
-        //Input:    6
-        //          1 3 5 6 7 10
-        //Output:   YES
+        //Input:    3 2
+        //Output:   1 1
+        //          1 2
+        //          1 3
+        //          2 1
+        //          2 2
+        //          2 3
+        //          3 1
+        //          3 2
+        //          3 3
 
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
 
-        c = kb.nextInt();
         n = kb.nextInt();
-        int[] arr = new int[n];
+        m = kb.nextInt();
+        pm = new int[m];
 
-        for (int i=0; i<n; i++){
-            arr[i] = kb.nextInt();
-        }
-
-        T.DFS(0, 0, arr);
-        System.out.println(answer);
+        T.DFS(0);
 
     }
 }

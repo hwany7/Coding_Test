@@ -5,9 +5,45 @@ import java.util.Stack;
 
 public class Main {
 
+    /*
+     * new Stack()
+     * for x in str:
+     *      if x.isDigit:
+     *          stack.push(x-48)
+     *      else:
+     *          rt <- stack.pop()
+     *          lt <- stack.pop()
+     *          if x == '+':
+     *              stack.push(lt + rt)
+     *          if x == '-':
+     *              stack.push(lt - rt)
+     *          if x == '*':
+     *              stack.push(lt * rt)
+     *          if x == '/':
+     *              stack.push(lt / rt)
+     *
+     * answer <- stack.pop()
+     *
+     */
 
     public int solution(String str) {
         int answer = 0;
+        Stack<Integer> stack = new Stack<>();
+
+        for(char x : str.toCharArray()){
+            if(Character.isDigit(x)) stack.push(x-48);
+            else{
+                int rt = stack.pop();
+                int lt = stack.pop();
+
+                if(x == '+') stack.push(lt + rt);
+                else if(x == '-') stack.push(lt - rt);
+                else if(x == '*') stack.push(lt * rt);
+                else if(x == '/') stack.push(lt / rt);
+            }
+        }
+        answer = stack.pop();
+
         return answer;
     }
 
@@ -23,5 +59,4 @@ public class Main {
         System.out.println(T.solution(str));
 
     }
-
 }

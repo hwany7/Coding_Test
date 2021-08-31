@@ -23,7 +23,16 @@ public class Main {
     static int[] check;
 
     public void DFS(int vertex){
-
+        if(vertex == n) answer++;
+        else{
+            for(int k=1; k<n+1; k++){
+                if(graph[vertex][k]==1 && check[k]==0){
+                    check[k] = 1;
+                    DFS(k);
+                    check[k] = 0;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
