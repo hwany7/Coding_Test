@@ -1,0 +1,46 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+
+    static int[] com;
+    static int[] pm;
+    static int[] check;
+    static int n;
+    static int target;
+    boolean flag = false;
+    int[][] memo = new int[35][35];
+
+    public int combination (int n, int r) {
+
+        return -1;
+    }
+
+    public void DFS (int level, int sum) {
+
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    4 16
+        //Output:   3 1 2 4
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        n = kb.nextInt();
+        target = kb.nextInt();
+
+        com = new int[n];
+        pm = new int[n];
+        check = new int[n+1];
+
+        for (int i=0; i<n; i++) {
+            com[i] = T.combination(n-1, i);
+        }
+
+        T.DFS(0, 0);
+
+    }
+}

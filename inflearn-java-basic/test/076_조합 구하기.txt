@@ -1,0 +1,44 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+
+        static int[] comb;
+        static int n;
+        static int m;
+
+        public void combination (int level, int start) {
+            if(level == m) {
+                for (int x : comb) System.out.print(x + " ");
+                System.out.println();
+
+            }else {
+                for(int i=start; i<n+1; i++) {
+                    comb[level] = i;
+                    combination(level+1, i+1);
+                }
+            }
+        }
+
+    public static void main(String[] args) {
+
+        //Input:    4 2
+        //Output:   1 2
+        //          1 3
+        //          1 4
+        //          2 3
+        //          2 4
+        //          3 4
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        n = kb.nextInt();
+        m = kb.nextInt();
+        comb = new int[m];
+
+        T.combination(0,1);
+
+    }
+}

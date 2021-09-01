@@ -1,0 +1,95 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+
+    /*
+     * combination(n, r):
+     *      if memo[n][r] != 0:
+     *          return memo[n][r]
+     *      if n==r || r==0:
+     *          return 1
+     *      else:
+     *          return memo[n][r] = combination(n-1, r-1) + combination(n-1, r)
+     *
+     * DFS(level, sum):
+     *      if flag == true:
+     *          return
+     *      if sum > target:
+     *          return
+     *      if level == n:
+     *          if sum == target:
+     *              for x in perm:
+     *                  print(x)
+     *              flag <- true
+     *          else:
+     *              for i=1 ~ n+1:
+     *                  check[i] <- 1
+     *                  perm[level] <- i
+     *                  DSF(level+1, sum + perm[level]*com[level])
+     *                  check[i] <- 0
+     */
+
+    static int[] com;
+    static int[] perm;
+    static int[] check;
+    static int n;
+    static int target;
+    boolean flag = false;
+    int[][] memo = new int[35][35];
+
+    public int combination (int n, int r) {
+        if (memo[n][r] != 0) return memo[n][r];
+
+        if (n==r || r==0) return 1;
+        else return memo[n][r] = combination(n-1, r-1) + combination(n-1, r);
+    }
+
+    public void DFS (int level, int sum) {
+        if (flag) return;
+
+        if (sum > target) return;
+
+        if (level == n) {
+            if (sum == target) {
+                for (int x: perm) System.out.print(x + " ");
+                flag = true;
+            }
+        }else {
+            for (int i=1; i<n+1; i++) {
+                if (check[i] == 0) {
+                    check[i] = 1;
+                    perm[level] = i;
+
+                    DFS(level+1, sum + perm[level]*com[level]);
+
+                    check[i] = 0;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    4 16
+        //Output:   3 1 2 4
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        n = kb.nextInt();
+        target = kb.nextInt();
+
+        com = new int[n];
+        perm = new int[n];
+        check = new int[n+1];
+
+        for (int i=0; i<n; i++) {
+            com[i] = T.combination(n-1, i);
+        }
+
+        T.DFS(0, 0);
+
+    }
+}

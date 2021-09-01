@@ -4,29 +4,28 @@ import java.util.Scanner;
 
 public class Main {
 
-    static int[] pm; //순열(permutation)
+    static int[] perm; //순열(permutation)
     static int[] check;
     static int[] arr;
     static int n;
     static int m;
 
-    public void DFS (int level) {
+    public void permutation (int level) {
         if (level == m) {
-            for (int x : pm) System.out.print(x + " ");
+            for (int x : perm) System.out.print(x + " ");
             System.out.println();
         }else {
             for (int i=0; i<n; i++) {
-                if (check[level] == 0){
+                if (check[i] == 0) {
                     check[i] = 1;
-                    pm[level] = arr[i];
+                    perm[level] = arr[i];
 
-                    DFS(level+1);
+                    permutation(level+1);
 
                     check[i] = 0;
                 }
             }
         }
-
     }
 
     public static void main(String[] args) {
@@ -53,9 +52,9 @@ public class Main {
         }
 
         check = new int[n];
-        pm = new int[m];
+        perm = new int[m];
 
-        T.DFS(0);
+        T.permutation(0);
 
     }
 }
