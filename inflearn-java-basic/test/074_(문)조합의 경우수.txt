@@ -1,0 +1,27 @@
+package basic.inflearn;
+
+import java.util.Scanner;
+
+public class Main {
+    static int[][] memo;
+
+    public int DFS (int n, int r) {
+
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    5 3
+        //Output:   10
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        memo = new int[35][35];
+
+        int n = kb.nextInt();
+        int r = kb.nextInt();
+
+        System.out.println(T.DFS(n, r));
+
+    }
+}

@@ -44,6 +44,9 @@ ___
 ### Arrays.sort(arr) : return Array
 * arr 를 입력받아 오름차순 정렬하여 반환
 
+### Arrays.sort(arr, Collections.reverseOrder()) : return Collection Array
+* Integer 와 같은 Collection Array 를 입력받아 내림차순으로 정렬하여 반환
+
 ### Arrays.stream(arr).max().getAsInt() : return int
 * arr 를 입력 받아서 가장 큰 수를 반환
 * stream 은 리덕션 메서드이고 거기에는 다양한 기능들이 존재

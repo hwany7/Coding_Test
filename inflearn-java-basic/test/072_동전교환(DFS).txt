@@ -1,0 +1,76 @@
+package basic.inflearn;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+
+    /*
+     * answer <- MAX_VALUE
+     *
+     * DFS(level, sum, arr):
+     *      if level == 0:
+     *          arr.sort(reverse)
+     *      if sum > m:
+     *          return
+     *      if level >= answer:
+     *          return
+     *
+     *      if sum == 0:
+     *          answer <- max(answer, level)
+     *      else:
+     *          for i ~ n:
+     *              DFS(level+1, sum+arr[i], arr)
+     */
+
+    static int answer = Integer.MAX_VALUE;
+    static int n;
+    static int m;
+
+    public void DFS (int level, int sum, Integer[] arr) {
+        if (level == 0) Arrays.sort(arr, Collections.reverseOrder());
+        if (sum > m) return;
+        if (level >= answer) return;
+
+        if (sum == m) {
+            answer = Math.min(answer, level);
+        }else{
+            for (int i=0; i<n; i++) {
+                DFS(level+1, sum+arr[i], arr);
+            }
+        }
+    }
+
+    /***
+     * 최소를 구하는 문제이기 때문에 BFS로 구해야 하는게 바람직하다
+     * 그러나 DFS로 구하기 위해서는 너무 많은 경우가 생기므로 여러 보정작업이 필요하다
+     *
+     * 1) 파생된 level이 answer보다 클 이유가 없으므로 리턴을 시켜주고
+     * 2) 들어오는 입력값 arr를 내림차순 정렬로 시켜줘서 처음 answer값이 빠르게 도달하게끔 해주자
+     */
+
+    public static void main(String[] args) {
+
+        //Input:    3
+        //          1 2 5
+        //          15
+        //Output:   3
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        n = kb.nextInt();
+        Integer[] arr = new Integer[n];
+
+        for (int i=0; i<n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        m = kb.nextInt();
+        T.DFS(0, 0, arr);
+
+        System.out.println(answer);
+
+    }
+}
