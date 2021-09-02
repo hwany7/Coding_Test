@@ -1,0 +1,117 @@
+package basic.inflearn;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+class Point {
+    int x;
+    int y;
+
+    Point (int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+public class Main {
+
+    /*
+     * new Point(int x, int y)
+     * new Queue q
+     * new int[][] board
+     * new int[] dx = {-1, 1, 0, 0}
+     * new int[] dy = {0, 0, -1, 1}
+     *
+     * BFS():
+     *      level <- 0
+     *      while q.isNotEmpty():
+     *          len <- q.size()
+     *          for i ~ len:
+     *              cur <- q.poll()
+     *              for k ~ 4:
+     *                  _x <- cur.x + dx[i]
+     *                  _y <- cur.y + dy[i]
+     *                  if _x>-1 and _x<n and _y>-1 and _y>m and board[_x][_y]==0:
+     *                      board[_x][_y] <- 1
+     *                      q.offer(new Point(_x, _y)
+     *          level++
+     */
+
+    static int answer;
+    static int m;
+    static int n;
+    static int[][] board;
+    static Queue<Point> q = new LinkedList<>();
+
+    static int[] dx = {-1, 1, 0, 0};
+    static int[] dy = {0, 0, -1, 1};
+
+    public void BFS () {
+        int level = 0;
+
+        while (!q.isEmpty()) {
+            int len = q.size();
+
+            for (int i=0; i<len; i++) {
+                Point cur = q.poll();
+
+                for (int k=0; k<4; k++) {
+                    int _x = cur.x + dx[k];
+                    int _y = cur.y + dy[k];
+
+                    if(_x>-1 && _x<n && _y>-1 && _y<m && board[_x][_y]==0) {
+                        board[_x][_y] = 1;
+                        q.offer(new Point(_x, _y));
+                    }
+                }
+            }
+            level++;
+        }
+
+        answer = level-1;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    6 4
+        //          0 0 -1 0 0 0
+        //          0 0 1 0 -1 0
+        //          0 0 -1 0 0 0
+        //          0 0 0 0 -1 1
+        //Output:   4
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        m = kb.nextInt();
+        n = kb.nextInt();
+        board = new int[n][m];
+
+        for (int i=0; i<n; i++) {
+            for (int j=0; j<m; j++) {
+                board[i][j] = kb.nextInt();
+                if (board[i][j] == 1) q.offer(new Point(i, j));
+            }
+        }
+
+        T.BFS();
+
+        boolean flag = false;
+        for (int i=0; i<n; i++) {
+            for (int j=0; j<m; j++) {
+                if (board[i][j] == 0) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                System.out.println(-1);
+                break;
+            }
+        }
+
+        if (!flag) System.out.println(answer);
+
+    }
+}
