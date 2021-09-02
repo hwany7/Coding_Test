@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Main {
     static int[][] memo;
 
-    public int comb (int n, int r) {
-        if(memo[n][r] > 0) return memo[n][r];
+    public int combination (int n, int r) {
+        if (memo[n][r] != 0) return memo[n][r];
 
-        if(n==r || r==0) return 1;
-        else return memo[n][r] = comb(n-1, r-1) + comb(n-1, r);
+        if (n==r || r==0) return 1;
+        else return memo[n][r] = combination(n-1, r-1) + combination(n-1, r);
     }
 
     /***
@@ -40,7 +40,7 @@ public class Main {
         int r = kb.nextInt();
         memo = new int[n+1][r+1];
 
-        System.out.println(T.comb(n, r));
+        System.out.println(T.combination(n, r));
 
     }
 }

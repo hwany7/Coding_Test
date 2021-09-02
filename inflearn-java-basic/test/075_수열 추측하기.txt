@@ -27,20 +27,20 @@ public class Main {
      *              for i=1 ~ n+1:
      *                  check[i] <- 1
      *                  perm[level] <- i
-     *                  DSF(level+1, sum + perm[level]*com[level])
+     *                  DSF(level+1, sum + perm[level]*comb[level])
      *                  check[i] <- 0
      */
 
-    static int[] com;
+    static int[] comb;
     static int[] perm;
     static int[] check;
+    static int[][] memo;
     static int n;
     static int target;
     boolean flag = false;
-    int[][] memo = new int[35][35];
 
     public int combination (int n, int r) {
-        if (memo[n][r] != 0) return memo[n][r];
+        if(memo[n][r] != 0) return memo[n][r];
 
         if (n==r || r==0) return 1;
         else return memo[n][r] = combination(n-1, r-1) + combination(n-1, r);
@@ -48,12 +48,11 @@ public class Main {
 
     public void DFS (int level, int sum) {
         if (flag) return;
-
         if (sum > target) return;
 
         if (level == n) {
             if (sum == target) {
-                for (int x: perm) System.out.print(x + " ");
+                for (int x : perm) System.out.print(x + " ");
                 flag = true;
             }
         }else {
@@ -62,8 +61,7 @@ public class Main {
                     check[i] = 1;
                     perm[level] = i;
 
-                    DFS(level+1, sum + perm[level]*com[level]);
-
+                    DFS(level+1, sum + perm[level]*comb[level]);
                     check[i] = 0;
                 }
             }
@@ -81,15 +79,15 @@ public class Main {
         n = kb.nextInt();
         target = kb.nextInt();
 
-        com = new int[n];
+        comb = new int[n];
         perm = new int[n];
         check = new int[n+1];
+        memo = new int[n+1][n+1];
 
         for (int i=0; i<n; i++) {
-            com[i] = T.combination(n-1, i);
+            comb[i] = T.combination(n-1, i);
         }
 
         T.DFS(0, 0);
-
     }
 }

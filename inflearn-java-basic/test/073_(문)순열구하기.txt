@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static int[] perm; //순열(permutation)
+    static int[] perm;
     static int[] check;
     static int[] arr;
     static int n;

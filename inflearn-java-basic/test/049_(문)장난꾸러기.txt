@@ -1,11 +1,9 @@
 package basic.inflearn;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-
 
     public ArrayList<Integer> solution(int n, int[] arr) {
         ArrayList<Integer> answer = new ArrayList<>();
@@ -32,6 +30,6 @@ public class Main {
         for(int x : T.solution(n, arr)){
             System.out.print(x + " ");
         }
-    }
 
+    }
 }

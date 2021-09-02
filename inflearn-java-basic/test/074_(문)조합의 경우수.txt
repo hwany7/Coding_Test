@@ -5,8 +5,9 @@ import java.util.Scanner;
 public class Main {
     static int[][] memo;
 
-    public int DFS (int n, int r) {
+    public int combination (int n, int r) {
 
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -16,12 +17,12 @@ public class Main {
 
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
-        memo = new int[35][35];
 
         int n = kb.nextInt();
         int r = kb.nextInt();
+        memo = new int[n+1][r+1];
 
-        System.out.println(T.DFS(n, r));
+        System.out.println(T.combination(n, r));
 
     }
 }

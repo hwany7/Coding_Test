@@ -42,29 +42,35 @@ public class Main {
      */
 
     static int[][] board;
-    static int[][] dis;
     static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
 
-    public void BFS (int x, int y) {
+    public int BFS (int x, int y) {
         Queue<Point> q = new LinkedList<>();
 
+        int level = 0;
         q.offer(new Point(x, y));
 
         while (!q.isEmpty()) {
-            Point cur = q.poll();
+            int len = q.size();
+            for (int i=0; i<len; i++) {
+                Point cur = q.poll();
 
-            for (int k=0; k<4; k++) {
-                int _x = cur.x + dx[k];
-                int _y = cur.y + dy[k];
+                for (int k=0; k<4; k++) {
+                    int _x = cur.x + dx[k];
+                    int _y = cur.y + dy[k];
 
-                if (_x>0 &&_x<8 && _y>0 && _y<8 && board[_x][_y]==0) {
-                    board[_x][_y] = 1;
-                    q.offer(new Point(_x, _y));
-                    dis[_x][_y] = dis[cur.x][cur.y] + 1;
+                    if (_x>0 && _x<8 && _y>0 && _y<8 && board[_x][_y]==0) {
+                        board[_x][_y] = 1;
+                        if (_x==7 && _y==7) return level+1;
+                        q.offer(new Point(_x, _y));
+                    }
                 }
             }
+            level++;
         }
+
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -82,8 +88,6 @@ public class Main {
         Scanner kb = new Scanner(System.in);
 
         board = new int[8][8];
-        dis = new int[8][8];
-
         for (int i=1; i<8; i++) {
             for (int j=1; j<8; j++) {
                 board[i][j] = kb.nextInt();
@@ -91,12 +95,8 @@ public class Main {
         }
 
         board[1][1] = 1;
-        T.BFS(1, 1);
 
-        if(dis[7][7] == 0) System.out.println(-1);
-        else System.out.println(dis[7][7]);
-
-
+        System.out.println(T.BFS(1, 1));
 
     }
 }
