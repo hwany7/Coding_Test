@@ -1,0 +1,40 @@
+package basic.inflearn;
+
+import java.util.*;
+
+public class Main {
+
+
+    public int solution (ArrayList<Man> list, int n) {
+        int answer = 0;
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    5
+        //          172 67
+        //          183 65
+        //          180 70
+        //          170 72
+        //          181 60
+        //Output:   3
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+        ArrayList<Man> list = new ArrayList<>();
+
+        for (int i=0; i<n; i++) {
+            int h = kb.nextInt();
+            int w = kb.nextInt();
+
+            list.add(new Man(h, w));
+        }
+
+        System.out.println(T.solution(list, n));
+
+    }
+}

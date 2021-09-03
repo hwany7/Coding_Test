@@ -1,0 +1,78 @@
+package basic.inflearn;
+
+import java.util.*;
+
+public class Main {
+
+    /*
+     * new Man(int height, int weight) impl Comparable
+     *
+     * solution(list, n):
+     *      answer <- 0
+     *      max <- MIN_VALUE
+     *      sort(list) desc
+     *
+     *      for m in list:
+     *          if m.weight > max:
+     *              max <- m.weight
+     *              answer++
+     */
+
+    static class Man implements Comparable<Man> {
+        int height;
+        int weight;
+
+        Man (int height, int weight) {
+            this.height = height;
+            this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Man o) {
+            return o.height - this.height;
+        }
+    }
+
+    public int solution (ArrayList<Man> list, int n) {
+        int answer = 0;
+        int max = Integer.MIN_VALUE;
+
+        Collections.sort(list);
+
+        for (Man m : list) {
+            if (m.weight > max) {
+                max = m.weight;
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    5
+        //          172 67
+        //          183 65
+        //          180 70
+        //          170 72
+        //          181 60
+        //Output:   3
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+        ArrayList<Man> list = new ArrayList<>();
+
+        for (int i=0; i<n; i++) {
+            int h = kb.nextInt();
+            int w = kb.nextInt();
+
+            list.add(new Man(h, w));
+        }
+
+        System.out.println(T.solution(list, n));
+
+    }
+}
