@@ -198,3 +198,8 @@ ___
 
 ### queue.contains(value) : return boolean
 * 해당 value 값이 큐 안에 존재하는지 체크하고 결과 반환
+
+### new PriorityQueue<> : return PriorityQueue
+* 우선순위 큐를 생성하여 반환
+* 큐와 사용법이 동일하며 poll 하면 가장 작은값이 반환
+* reverseOrder 가능 -> poll 하면 가장 큰값이 출력

@@ -1,0 +1,37 @@
+package basic.inflearn;
+
+import java.util.*;
+
+public class Main {
+
+    public int solution (ArrayList<Time> list) {
+        int answer = 0;
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    5
+        //          14 18
+        //          12 15
+        //          15 20
+        //          20 30
+        //          5 14
+        //Output:   2
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+        ArrayList<Time> list = new ArrayList<>();
+
+        for (int i=0; i<n; i++) {
+            int start = kb.nextInt();
+            int end = kb.nextInt();
+            list.add(new Time(start, 's'));
+            list.add(new Time(end, 'e'));
+        }
+        System.out.println(T.solution(list));
+    }
+}

@@ -1,0 +1,41 @@
+package basic.inflearn;
+
+import java.util.*;
+
+public class Main {
+
+    public int solution (ArrayList<Lecture> list, int max, int n) {
+        int answer = 0;
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        //Input:    6
+        //          50 2
+        //          20 1
+        //          40 2
+        //          60 3
+        //          30 3
+        //          30 1
+        //Output:   150
+
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int n = kb.nextInt();
+        ArrayList<Lecture> list = new ArrayList<>();
+        int max = 0;
+
+        for (int i=0; i<n; i++) {
+            int m = kb.nextInt();
+            int d = kb.nextInt();
+
+            list.add(new Lecture(m, d));
+
+            if (d > max) max = d;
+        }
+        System.out.println(T.solution(list, max, n));
+    }
+}
