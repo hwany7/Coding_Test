@@ -1,0 +1,48 @@
+import java.util.HashMap;
+import java.util.ArrayList;
+
+class Solution {
+    
+    class Chat {
+        String uid;
+        char action; // E, L
+        
+        Chat(String uid, char action) {
+            this.uid = uid;
+            this.action = action;
+        }
+    }
+
+    public String[] solution(String[] record) {       
+        HashMap<String, String> map = new HashMap<>();
+        ArrayList<Chat> list = new ArrayList<>();
+        
+        for (String r : record) {
+            String[] word = r.split(" ");
+            
+            if (word[0].equals("Enter")) {
+                list.add(new Chat(word[1], 'E'));
+                map.put(word[1], word[2]);
+            }else if(word[0].equals("Leave")) {
+                list.add(new Chat(word[1], 'L'));
+            }else {
+                map.put(word[1], word[2]);
+            }
+        }
+        
+        
+        String[] answer = new String[list.size()];
+        
+        for(int i=0; i<list.size(); i++) {    
+            String msg = map.get(list.get(i).uid);
+            
+            if (list.get(i).action == 'E') msg += "님이 들어왔습니다.";
+            else msg += "님이 나갔습니다.";
+            
+            answer[i] = msg;
+     
+        }
+           
+        return answer;
+    }
+}
