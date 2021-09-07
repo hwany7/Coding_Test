@@ -1,0 +1,72 @@
+import java.util.*;
+
+class Solution {
+
+    ArrayList<Node> list = new ArrayList<>();
+    int[][] answer;
+    int preIndex = 0;
+    int postIndex = 0;
+
+    public int[][] solution(int[][] nodeinfo) {
+
+        for (int i=0; i<nodeinfo.length; i++) {
+            list.add(new Node(i+1, nodeinfo[i][0], nodeinfo[i][1]));
+        }
+
+        Collections.sort(list);
+        Node root = list.get(0);
+
+        for (int i=1; i<list.size(); i++) {
+            nodeConnect(root, list.get(i));
+        }
+
+        answer = new int[2][list.size()];
+
+        preorder(root);
+        postorder(root);
+
+        return answer;
+    }
+
+    void preorder(Node n) {
+        if (n != null) {
+            answer[0][preIndex++] = n.data;
+            if (n.lt != null) preorder(n.lt);
+            if (n.rt != null) preorder(n.rt);
+        }
+    }
+
+    void postorder(Node n) {
+        if (n != null) {
+            if (n.lt != null) postorder(n.lt);
+            if (n.rt != null) postorder(n.rt);
+            answer[1][postIndex++] = n.data;
+        }
+    }
+    void nodeConnect (Node p, Node c) {
+        if (c.x < p.x) {
+            if (p.lt == null) p.lt = c;
+            else nodeConnect (p.lt, c);
+        }else {
+            if (p.rt == null) p.rt = c;
+            else nodeConnect(p.rt, c);
+        }
+    }
+
+    class Node implements Comparable<Node>{
+        int data;
+        int x, y;
+        Node lt, rt;
+
+        Node (int data, int x, int y) {
+            this.data = data;
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            return o.y - this.y;
+        }
+    }
+}

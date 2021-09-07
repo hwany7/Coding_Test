@@ -1,91 +1,61 @@
 package basic.inflearn;
 
-import java.util.*;
+import java.util.Scanner;
+
+class Node{
+    int data;
+    Node lt, rt;
+
+    public Node(int data){
+        this.data = data;
+        lt = rt = null;
+    }
+}
 
 public class Main {
 
-    static class Edge implements Comparable<Edge> {
-        int vex;
-        int cost;
-        Edge (int vex, int cost) {
-            this.vex = vex;
-            this.cost = cost;
+    /*
+     * DFS(root):
+     *      if root == null:
+     *          return
+     *      else:
+     *          DFS(root.lt)
+     *          DFS(root.rt)
+     */
+
+    Node root;
+    public void DFS(Node root){
+        if(root == null) return;
+        else{
+            //전위순회
+            System.out.print(root.data + " ");
+
+            DFS(root.lt);
+
+            //중위순회
+            //System.out.print(root.data + " ");
+
+            DFS(root.rt);
+
+            //후회순위
+            //System.out.print(root.data + " ");
         }
-
-        @Override
-        public int compareTo(Edge o) {
-            return this.cost - o.cost;
-        }
-    }
-    public void solution(int n, int m, ArrayList<ArrayList<Edge>> graph, int[] dis, int v) {
-        PriorityQueue<Edge> pq = new PriorityQueue<>();
-
-        pq.offer(new Edge(v, 0));
-        dis[v] = 0;
-
-        while (!pq.isEmpty()) {
-            Edge cur = pq.poll();
-            int vex = cur.vex;
-            int cost = cur.cost;
-
-            if (cost > dis[vex]) continue;
-            for (Edge e : graph.get(vex)) {
-                if (di)
-            }
-        }
-
     }
 
     public static void main(String[] args) {
 
-        //Input:    6 9
-        //          1 2 12 // 1번 정점에서 2번정점으로 가는데 12의 비용이 든다.
-        //          1 3 4
-        //          2 1 2
-        //          2 3 5
-        //          2 5 5
-        //          3 4 5
-        //          4 2 2
-        //          4 5 5
-        //          6 4 5
-        //Output:   6 9
-        //          1 2 12 // 1번 정점에서 2번정점으로 가는데 12의 비용이 든다.
-        //          1 3 4
-        //          2 1 2
-        //          2 3 5
-        //          2 5 5
-        //          3 4 5
-        //          4 2 2
-        //          4 5 5
-        //          6 4 5
-
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
 
-        int n = kb.nextInt();
-        int m = kb.nextInt();
+        T.root = new Node(1);
+        T.root.lt = new Node(2);
+        T.root.rt = new Node(3);
+        T.root.lt.lt = new Node(4);
+        T.root.lt.rt = new Node(5);
+        T.root.rt.lt = new Node(6);
+        T.root.rt.rt = new Node(7);
 
-        ArrayList<ArrayList<Edge>> graph = new ArrayList<>();
+        T.DFS(T.root);
 
-        for (int i=0; i<n-1; i++) {
-            graph.add(new ArrayList<Edge>());
-        }
-        int[] dis = new int[n+1];
-        Arrays.fill(dis, Integer.MAX_VALUE);
-
-        for (int i=0; i<m; i++) {
-            int a = kb.nextInt();
-            int b = kb.nextInt();
-            int c = kb.nextInt();
-
-            graph.get(a).add(new Edge(b, c));
-        }
-
-        T.solution(n, m, graph, dis, 1);
-
-        for (int i=2; i<n+1; i++) {
-            if (dis[i] != Integer.MAX_VALUE) System.out.println(i + " : " + dis[i]);
-            else System.out.println(i + " : impossible");
-        }
     }
 }
