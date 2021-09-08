@@ -2,54 +2,66 @@ import java.util.*;
 
 class Solution {
 
-    ArrayList<Node> list = new ArrayList<>();
     int[][] answer;
-    int preIndex = 0;
-    int postIndex = 0;
+    int index;
 
     public int[][] solution(int[][] nodeinfo) {
+        ArrayList<Node> list = new ArrayList<>();
 
+        //노드 추가
         for (int i=0; i<nodeinfo.length; i++) {
             list.add(new Node(i+1, nodeinfo[i][0], nodeinfo[i][1]));
         }
 
+        //y내림차순 정렬
         Collections.sort(list);
-        Node root = list.get(0);
 
-        for (int i=1; i<list.size(); i++) {
+        //노드연결
+        Node root = list.get(0);
+        for (int i=0; i<list.size(); i++) {
             nodeConnect(root, list.get(i));
         }
 
-        answer = new int[2][list.size()];
+        answer = new int[2][nodeinfo.length];
 
-        preorder(root);
+        //전위순회
+        index = 0;
+        predorder(root);
+
+        //후위순회
+        index = 0;
         postorder(root);
 
         return answer;
     }
 
-    void preorder(Node n) {
-        if (n != null) {
-            answer[0][preIndex++] = n.data;
-            if (n.lt != null) preorder(n.lt);
-            if (n.rt != null) preorder(n.rt);
+    void predorder (Node n) {
+        if (n == null) return;
+        else {
+            answer[0][index++] = n.data;
+            if (n.lt != null) predorder(n.lt);
+            if (n.rt != null) predorder(n.rt);
         }
     }
 
-    void postorder(Node n) {
-        if (n != null) {
-            if (n.lt != null) postorder(n.lt);
-            if (n.rt != null) postorder(n.rt);
-            answer[1][postIndex++] = n.data;
+    void postorder (Node n) {
+        if(n == null) return;
+        else {
+            if(n.lt != null) postorder(n.lt);
+            if(n.rt != null) postorder(n.rt);
+            answer[1][index++] = n.data;
         }
     }
-    void nodeConnect (Node p, Node c) {
-        if (c.x < p.x) {
-            if (p.lt == null) p.lt = c;
-            else nodeConnect (p.lt, c);
-        }else {
-            if (p.rt == null) p.rt = c;
-            else nodeConnect(p.rt, c);
+
+    void nodeConnect(Node p, Node c) {
+        if (p != null) {
+            if (c.x < p.x) {
+                if (p.lt == null) p.lt = c;
+                else nodeConnect(p.lt, c);
+            }else if (p.x < c.x) {
+                if (p.rt == null) p.rt = c;
+                else nodeConnect(p.rt, c);
+            }
         }
     }
 
@@ -65,7 +77,7 @@ class Solution {
         }
 
         @Override
-        public int compareTo(Node o) {
+        public int compareTo (Node o) {
             return o.y - this.y;
         }
     }

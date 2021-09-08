@@ -1,0 +1,102 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String word, String[] pages) {
+        ArrayList<Page> list = new ArrayList<>();
+        HashMap<String, Integer> map = new HashMap<>();
+
+        int len = word.length();
+        word = word.toLowerCase();
+
+        for (int i=0; i<pages.length; i++) {
+            String str = pages[i].toLowerCase();
+            int mid=0, lt=0, rt=0;
+
+            //url
+            while (mid <= lt) {
+                lt = str.indexOf("<meta", lt+1);
+                rt = str.indexOf(">", lt);
+                mid = str.lastIndexOf("https://", rt);
+            }
+
+            rt = str.indexOf("\"", mid);
+
+            String url = str.substring(mid, rt);
+            map.put(url, i);
+
+            //basic
+            lt = str.indexOf("<body>", rt);
+            int basic = 0;
+
+            while (true) {
+                lt = str.indexOf(word, lt+1);
+                if (lt == -1) break;
+                if (!Character.isLetter(str.charAt(lt-1)) && !Character.isLetter(str.charAt(lt+len))) {
+                    basic++;
+                    lt += len;
+                }
+            }
+
+            //link
+            int link = 0;
+            lt = str.indexOf("<body>", rt);
+
+            while (true) {
+                lt = str.indexOf("<a href", lt+1);
+                if (lt == -1) break;
+                link++;
+            }
+
+            list.add(new Page(i, basic, link, (double)basic));
+
+        }
+
+        for (int i=0; i<pages.length; i++) {
+            String str = pages[i];
+            int lt=0, rt=0;
+
+            while (true) {
+                lt = str.indexOf("<a href", rt);
+                if (lt == -1) break;
+
+                lt = str.indexOf("https://", lt);
+                rt = str.indexOf("\"", lt);
+                String linkurl = str.substring(lt, rt);
+
+                Integer value = map.get(linkurl);
+
+                if (value != null) {
+                    list.get(value).score += (double)list.get(i).basic / list.get(i).link;
+                }
+
+            }
+        }
+
+        Collections.sort(list);
+
+        int answer = list.get(0).index;
+
+        return answer;
+    }
+
+    class Page implements Comparable<Page> {
+        int index;
+        int basic, link;
+        double score;
+
+        Page (int index, int basic, int link, double score) {
+            this.index = index;
+            this.basic = basic;
+            this.link = link;
+            this.score = score;
+        }
+
+        @Override
+        public int compareTo (Page o) {
+            if (o.score == this.score) return this.index - o.index;
+            else if (this.score > o.score) return -1;
+            else return 1;
+        }
+
+    }
+}
