@@ -1,0 +1,38 @@
+class Solution {
+    public int solution(int size, String[] cities) {
+        int hit = 0;
+        int answer = 0;
+
+        if(size != 0) {
+            String[] cache = new String[size];
+            for (int i=0; i<size; i++) cache[i] = " ";
+
+
+            for (String x : cities) {
+                int index = size-1;
+                boolean flag = false;
+                x = x.toLowerCase();
+
+                for (int i=0; i<size; i++) {
+                    if (x.equals(cache[i])) {
+                        index = i;
+                        flag = true;
+                    }
+                }
+
+                for (int i=index; i>0; i--) {
+                    cache[i] = cache[i-1];
+                }
+
+                cache[0] = x;
+                if(flag) answer++;
+                else answer += 5;
+
+            }
+        }else {
+            answer = cities.length * 5;
+        }
+
+        return answer;
+    }
+}
