@@ -1,0 +1,51 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String p) {
+        if (p.length() == 0) return p;
+
+        int cnt=0, mid=0;
+
+        for(int i=0; i<p.length(); i++) {
+            if (p.charAt(i) == '(') cnt++;
+            else cnt--;
+
+            if(cnt == 0) {
+                mid = i+1;
+                break;
+            }
+        }
+
+        String u = p.substring(0, mid);
+        String v = p.substring(mid, p.length());
+
+        if (check(u)) {
+            return u + solution(v);
+        }else {
+            String _u = "(";
+            _u += solution(v);
+            _u += ")";
+
+            for(int i=1; i<u.length()-1; i++) {
+                if(u.charAt(i) == '(') _u += ')';
+                else _u += '(';
+            }
+
+            return _u;
+        }
+    }
+
+    public boolean check(String str) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char x : str.toCharArray()) {
+            if (x == '(') stack.push(x);
+            else {
+                if(stack.isEmpty()) return false;
+                stack.pop();
+            }
+        }
+
+        return true;
+    }
+}

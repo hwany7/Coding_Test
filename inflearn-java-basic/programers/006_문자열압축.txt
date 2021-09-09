@@ -1,0 +1,49 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String s) {
+        int answer = Integer.MAX_VALUE;
+
+        for(int i=1; i<=s.length()/2+1; i++) {
+            ArrayList<String> tmp = toList(s, i);
+            answer = Math.min(answer, count(tmp, i));
+        }
+
+        return answer;
+    }
+
+    public int count(ArrayList<String> list, int n) {
+        int cnt = 1;
+        String str = "";
+        list.add(" ");
+
+        for (int i=0; i<list.size()-1; i++) {
+            if (list.get(i).equals(list.get(i+1))) cnt++;
+            else {
+                str += list.get(i);
+                if(cnt > 1) str += String.valueOf(cnt);
+                cnt = 1;
+            }
+        }
+
+        return str.length();
+    }
+
+
+    public ArrayList<String> toList(String str, int n) {
+        ArrayList<String> list = new ArrayList<>();
+        int len = str.length();
+
+        int pos = 0;
+        while (pos+n <= len) {
+            list.add(str.substring(pos, pos+n));
+            pos += n;
+        }
+
+        if(pos != len) {
+            list.add(str.substring(pos,len));
+        }
+
+        return list;
+    }
+}

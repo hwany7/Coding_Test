@@ -11,6 +11,9 @@ ___
 ### Character.isLowerCase(char) : return boolean
 * char 을 입력받아 소문자인지 체크하여 결과 반환
 
+### Character.isLetter(char) : return boolean
+* char 을 입력받아 알파벳인지 체크해서 결과 반환
+
 ### Character.isAlphabetic(char) : return boolean
 * char 을 입력받아 알파벳인지 체크하여 결과 반환
 
@@ -77,6 +80,12 @@ ___
 
 ### str.indexOf(char) : return int
 * str 에서 해당 char 를 찾아 인덱스를 반환
+
+### str.indexOf(char, start) : return int
+* str 에서 해당 char 를 start 지점부터 찾아 인덱스를 반환
+
+### str.lastIndexOf(char, end) : return int
+* str 에서 해당 char 를 end 지점부터 거꾸 로찾아 인덱스를 반환
 
 ### str.split(string) : return String[]
 * " "과 같은 string 을 기준으로 str 을 잘라서 String 배열로 반환
