@@ -1,0 +1,120 @@
+import java.util.*;
+
+class Solution {
+
+    char[] comb;
+    int n, m;
+    ArrayList<String> list = new ArrayList<>();
+
+    public String[] solution(String[] orders, int[] course) {
+
+        for (int c : course) {
+            //[2,3,4]
+            m = c;
+            comb = new char[m];
+            for (String order : orders) {
+                char[] arr = order.toCharArray();
+                Arrays.sort(arr);
+                String str = new String(arr);
+
+                n = order.length();
+                if (n == m) list.add(str);
+                else if(m < n) combination(0, 0, str);
+            }
+        }
+
+        HashMap<String, Integer> map = new HashMap<>();
+
+        for (String x : list) {
+            map.put(x, map.getOrDefault(x, 0) + 1);
+        }
+
+        ArrayList<Setmenu> _list = new ArrayList<>();
+
+        for (String key : map.keySet()) {
+            _list.add(new Setmenu(key, map.get(key)));
+        }
+
+        Collections.sort(_list);
+        list.clear();
+
+        for (int x : course) {
+            //[2,3,4]
+            int max = Integer.MIN_VALUE;
+            for (Setmenu m : _list) {
+                if (m.set.length() == x && m.cnt > 1) {
+                    if (max < m.cnt) {
+                        max = m.cnt;
+                        list.add(m.set);
+                    }else if(max == m.cnt) {
+                        list.add(m.set);
+                    }else {
+                        break;
+                    }
+                }
+            }
+        }
+
+        Collections.sort(list);
+
+        String[] answer = new String[list.size()];
+        int cnt = 0;
+        for (String x : list) {
+            answer[cnt++] = x;
+        }
+
+
+        return answer;
+    }
+
+    public void combination (int level, int start, String str) {
+        if (level == m) {
+            String tmp = "";
+            for (char x : comb) tmp += x;
+            list.add(tmp);
+        } else {
+            for (int i=start; i<n; i++) {
+                comb[level] = str.charAt(i);
+                combination(level+1, i+1, str);
+            }
+        }
+    }
+
+    class Setmenu implements Comparable<Setmenu> {
+        String set;
+        int cnt;
+        Setmenu (String set, int cnt) {
+            this.set = set;
+            this.cnt = cnt;
+        }
+
+        @Override
+        public int compareTo(Setmenu o) {
+            if (this.set.length() == o.set.length()){
+                return o.cnt - this.cnt;
+            }else {
+                return this.set.length() - o.set.length();
+            }
+        }
+    }
+
+
+
+}
+
+
+//조합을 만들어서 list로 리턴
+// 이떄 str길이 고려/ 같을때는 그냥 리턴, / 작을때는 시행 x / 클때는 조합
+
+//그걸 사전에 다 넣고
+//2개 이상인것 체크 -> 결과에 넣음
+
+
+
+
+// ["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"]
+// [2,3,4]
+
+// ["AC", "ACDE", "BCFG", "CDE"]
+
+//코스요리 : 최소 2가지, 최소 2명의 손님으로 주문된

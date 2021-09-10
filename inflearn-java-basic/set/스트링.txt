@@ -1,0 +1,27 @@
+package basic.inflearn;
+
+import java.util.*;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        String a ="CDABQ";
+
+        char[] arr = a.toCharArray(); //스트링을 문자열 배열로
+        Arrays.sort(arr);//문자열 배열을 스트링으로
+
+        String b = new String(arr);
+
+
+        ArrayList<String> list = new ArrayList<>();
+        list.clear();
+
+
+        //문자열 끼리 비교 str1.compareTo(str2); =:같다 양수:str1이 큼 음수:str2가 큼
+
+
+    }
+}
+
