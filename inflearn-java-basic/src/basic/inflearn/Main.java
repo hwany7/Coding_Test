@@ -1,5 +1,6 @@
 package basic.inflearn;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -39,5 +40,8 @@ public class Main {
 
         if(fa == fb) System.out.println("YES");
         else System.out.println("NO");
+
+
+        HashMap<Integer, Integer> map = new HashMap<>();
     }
 }
