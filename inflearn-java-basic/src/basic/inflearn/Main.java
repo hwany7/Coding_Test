@@ -1,47 +1,86 @@
 package basic.inflearn;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
-    static int[] unf;
 
-    public static int Find(int v){
-        if(v == unf[v]) return v;
-        else return unf[v] = Find(unf[v]);
+    /*
+     * new Lecture(int money, int time) impl Comparable
+     *
+     * solution(list, max, n):
+     *      answer <- 0
+     *      j <- 0
+     *      new PriorityQueue<Integer> pq
+     *
+     *      sort(list)
+     *      for i=max ~ i>0, i--:
+     *          for  ~ j<n:
+     *              if list[j].time < i:
+     *                  break
+     *              pq.offer(list[j].money)
+     *          if pq.isNotEmpty():
+     *              answer += pq.poll()
+     */
+
+    static class Lecture implements Comparable<Lecture> {
+        int money;
+        int time;
+
+        Lecture (int money, int time) {
+            this.money = money;
+            this.time = time;
+        }
+
+        @Override
+        public int compareTo(Lecture lecture) {
+            return lecture.time - this.time;
+        }
     }
 
-    public static void Union(int a, int b) {
-        int fa = Find(a);
-        int fb = Find(b);
-        if(fa != fb) unf[fa] = fb;
+    public int solution (ArrayList<Lecture> list, int max, int n) {
+        int answer = 0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+        Collections.sort(list);
+
+        int j=0;
+        for (int i=max; i>0; i--) {
+            for( ; j<n; j++) {
+                if (list.get(j).time < i) break;
+                pq.offer(list.get(j).money);
+            }
+            if (!pq.isEmpty()) answer += pq.poll();
+        }
+
+        return answer;
     }
 
     public static void main(String[] args) {
 
+        //Input:    6
+        //          50 2
+        //          20 1
+        //          40 2
+        //          60 3
+        //          30 3
+        //          30 1
+        //Output:   150
+
+        Main T = new Main();
         Scanner kb = new Scanner(System.in);
 
         int n = kb.nextInt();
-        int m = kb.nextInt();
+        ArrayList<Lecture> list = new ArrayList<>();
+        int max = 0;
 
-        unf = new int[n+1];
+        for (int i=0; i<n; i++) {
+            int m = kb.nextInt();
+            int d = kb.nextInt();
 
-        for(int i=1; i<=n; i++) unf[i] = i;
-        for(int i=1; i<=m; i++) {
-            int a = kb.nextInt();
-            int b = kb.nextInt();
-            Union(a, b);
+            list.add(new Lecture(m, d));
+
+            if (d > max) max = d;
         }
-
-        int a = kb.nextInt();
-        int b = kb.nextInt();
-        int fa = Find(a);
-        int fb = Find(b);
-
-        if(fa == fb) System.out.println("YES");
-        else System.out.println("NO");
-
-
-        HashMap<Integer, Integer> map = new HashMap<>();
+        System.out.println(T.solution(list, max, n));
     }
 }
