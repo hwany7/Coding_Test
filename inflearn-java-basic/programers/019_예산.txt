@@ -1,0 +1,59 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] budgets, int M) {
+        int answer = 0;
+        long sum = 0;
+
+        Arrays.sort(budgets);
+
+        for(int budget : budgets){
+            sum += budget;
+        }
+
+        // 요청하는 예산들의 합 <= 총 예산
+        if(sum <= M){
+            // 상한액은 가장 큰 값
+            answer = budgets[budgets.length-1];
+        }
+        // 요청하는 예산들의 합 > 총 예산
+        else{
+
+            int start, mid, end;
+            sum = 0;
+            // 예산의 크기
+            start = 0;
+            mid = 0;
+            end = budgets[budgets.length-1];
+
+            // 이진 탐색
+            while(start <= end){
+
+                mid = (start + end) / 2;
+
+                sum = 0;
+                // sum 구하기
+                for(int i=0; i<budgets.length; i++){
+                    if(budgets[i] < mid){
+                        sum += budgets[i];
+                    }
+                    else{
+                        sum += mid;
+                    }
+                }
+
+                // 비교대상
+                if(sum > M){
+                    end = mid - 1;
+                }
+                else{
+                    start = mid + 1;
+                    answer = Math.max(answer, mid);
+                }
+
+            }
+        }
+
+        return answer;
+    }
+}
