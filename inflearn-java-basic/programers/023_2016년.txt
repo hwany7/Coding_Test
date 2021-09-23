@@ -1,0 +1,34 @@
+class Solution {
+  public String solution(int a, int b) {
+      int daySum = 0;
+      for(int m=1; m<a; m++) {
+        if(m==2) { //2월
+          daySum+=29; //윤년이라 29일
+        } else if(m<=7) { //7월 이전
+          if(m%2!=0) { //홀수달 > 31일
+            daySum+=31;
+          } else { //짝수달
+            daySum+=30;
+          }
+        } else if(m>=8) {
+          if(m%2!=0) { //홀수달 > 31일
+            daySum+=30;
+          } else { //짝수달
+            daySum+=31;
+          }
+        }
+      }
+      daySum+=b; //일수 합산
+      String answer = "";
+      switch(daySum%7) {
+        case 1: answer="FRI"; break;
+        case 2: answer="SAT"; break;
+        case 3: answer="SUN"; break;
+        case 4: answer="MON"; break;
+        case 5: answer="TUE"; break;
+        case 6: answer="WED"; break;
+        case 0: answer="THU"; break; //7n%7 == 0
+      }
+      return answer;
+  }
+}
