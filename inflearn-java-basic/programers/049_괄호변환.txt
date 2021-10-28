@@ -1,0 +1,58 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String p) {
+        if (p.length() == 0) return p;
+        
+        //u랑 v분리
+        // u:() v: ))((()
+        int index = 0;
+        int cnt = 0;
+        for (char x : p.toCharArray()) {
+            if (x == '(') cnt++;
+            else cnt--;
+            
+            index++;
+            if (cnt == 0) break;
+                
+        }//index==2;
+        
+        String u = p.substring(0, index);
+        String v = p.substring(index, p.length());
+        
+        // System.out.println("u: " + u);
+        // System.out.println("v: " + v);
+        
+        if (check(u)) {
+            return u + solution(v);      
+        } else {
+            String tmp = "(";
+            tmp += solution(v);
+            tmp += ")";
+            
+            u = u.substring(1, u.length()-1);
+            
+            for(char x : u.toCharArray()) {
+                if (x == '(') tmp += ')';
+                else tmp+= '(';
+            }       
+            return tmp;
+        }
+    }
+    
+    
+    public boolean check(String str) {
+        Stack<Character> stack =  new Stack<>();
+        
+        for(char x : str.toCharArray()) {
+            if (x == '(') stack.push(x);
+            else {
+                if (stack.isEmpty()) return false;
+                stack.pop();
+            }
+        }        
+        return true;
+    }
+    
+    
+}
