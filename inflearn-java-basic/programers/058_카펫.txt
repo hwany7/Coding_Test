@@ -1,0 +1,22 @@
+class Solution {
+    public int[] solution(int brown, int yellow) {
+        int[] answer = new int[2];
+
+        int size = (brown+4) / 2;
+        int m = 3;
+        int n = size - m;
+
+        while (n >= 3 && n >= m) {
+            if ((n-2) * (m-2) == yellow) {
+                answer[0] = n;
+                answer[1] = m;
+                break;
+            }
+            n--;
+            m++;
+        }
+
+        return answer;
+    }
+
+}
