@@ -1,0 +1,200 @@
+import java.util.*;
+
+class Solution {
+    String answer = "";
+    public String solution(int m, int n, String[] board) {
+        char[][] cBoard = new char[m][n];
+        ArrayList<Character> indexList = new ArrayList<>();
+        for(int i =0;i<m;i++){
+            for(int j =0;j<n;j++){
+                cBoard[i][j] = board[i].charAt(j);
+                if(cBoard[i][j]>='A'&&cBoard[i][j]<='Z'){
+                    if(check(indexList, cBoard[i][j])){
+                        indexList.add(cBoard[i][j]);
+                    }
+                }
+            }
+        }
+        char[] indexArr = new char[indexList.size()];
+        for(int i =0;i<indexList.size();i++){
+            indexArr[i] = indexList.get(i);
+        }
+        Arrays.sort(indexArr);
+        int[][] xy = new int[indexArr.length][4];
+        for(int i =0;i<indexArr.length;i++){
+            int j = 0;
+            for(int a= 0;a<m;a++){
+                for(int b = 0;b<n;b++){
+                    if(indexArr[i]== cBoard[a][b]){
+                        xy[i][j] = a;
+                        xy[i][j+1] = b;
+                        j+=2;
+                    }
+                    if(j==4){break;}
+                }
+                if(j==4){break;}
+            }
+        }
+
+        search(cBoard,indexArr,xy);
+        return answer;
+    }
+    public void search(char[][] cBoard,char[] indexArr, int[][] xy){
+        boolean check;
+        while(true){
+            check = true;
+            for(int i=0;i<indexArr.length;i++){
+                if(indexArr[i]!='.'){
+                    if(blankCheck(cBoard,xy[i][1],xy[i][0],xy[i][3],xy[i][2],indexArr[i])){
+                        check = false;
+                        cBoard[xy[i][0]][xy[i][1]] = '.';
+                        cBoard[xy[i][2]][xy[i][3]] = '.';
+                        answer+=indexArr[i];
+                        indexArr[i] = '.';
+                        break;
+                    }
+                }
+            }
+
+            if(answer.length()==indexArr.length){
+                return;
+            }
+            if(check){
+                answer = "IMPOSSIBLE";
+                return;
+            }
+        }
+    }
+
+    public boolean blankCheck(char[][] cBoard,int fx,int fy, int sx,int sy, char target){
+        if(fx == sx){
+            if(fy>sy){
+                for(int i =sy;i<fy;i++){
+                    if(!(cBoard[i][fx]==target||cBoard[i][fx]=='.')){
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else{
+                for(int i =fy;i<sy;i++){
+                    if(!(cBoard[i][fx]==target||cBoard[i][fx]=='.')){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        else if(fy == sy){
+            if(fx>sx){
+                for(int i =sx;i<fx;i++){
+                    if(!(cBoard[fy][i]==target||cBoard[fy][i]=='.')){
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else{
+                for(int i =fx;i<sx;i++){
+                    if(!(cBoard[fy][i]==target||cBoard[fy][i]=='.')){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        else{
+            if(fx>sx){
+                boolean bCheck = true;
+                for(int i =sx+1;i<fx+1;i++){
+                    if(!(cBoard[sy][i]==target||cBoard[sy][i]=='.')){
+                        bCheck = false;
+                        break;
+                    }
+                }
+                if(bCheck){
+                    for(int i= fy+1;i<sy+1;i++){
+                        if(!(cBoard[i][fx]==target||cBoard[i][fx]=='.')){
+                            bCheck = false;
+                            break;
+                        }
+                    }
+                }
+                if(bCheck){return true;}
+                else{
+                    bCheck = true;
+                    for(int i =sx;i<fx;i++){
+                        if(!(cBoard[fy][i]==target||cBoard[fy][i]=='.')){
+                            bCheck = false;
+                            break;
+                        }
+                    }
+                    if(bCheck){
+                        for(int i= fy;i<sy;i++){
+                            if(!(cBoard[i][sx]==target||cBoard[i][sx]=='.')){
+                                bCheck = false;
+                                break;
+                            }
+                        }
+                    }
+                    if(bCheck){return true;}
+                    else{return false;}
+                }
+
+            }
+            else{
+                boolean bCheck = true;
+
+                for(int i =fx+1;i<sx+1;i++){
+
+                    if(!(cBoard[fy][i]==target||cBoard[fy][i]=='.')){
+                        bCheck = false;
+                        break;
+                    }
+                }
+
+                if(bCheck){
+                    for(int i= fy;i<sy;i++){
+                        if(!(cBoard[i][sx]==target||cBoard[i][sx]=='.')){
+                            bCheck = false;
+                            break;
+                        }
+                    }
+                }
+                if(bCheck){return true;}
+                else{
+                    bCheck = true;
+                    for(int i =fx;i<sx;i++){
+                        if(!(cBoard[sy][i]==target||cBoard[sy][i]=='.')){
+                            bCheck = false;
+                            break;
+                        }
+                    }
+                    if(bCheck){
+                        for(int i= fy+1;i<sy+1;i++){
+                            if(!(cBoard[i][fx]==target||cBoard[i][fx]=='.')){
+                                bCheck = false;
+                                break;
+                            }
+                        }
+                    }
+                    if(bCheck){return true;}
+                    else{return false;}
+                }
+            }
+
+        }
+
+    }
+    public boolean check(ArrayList<Character> index, char temp){
+        if(index.size()==0){return true;}
+        for(int i =0;i<index.size();i++){
+            if(temp == index.get(i)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+}
